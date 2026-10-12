@@ -1,0 +1,107 @@
+/* ==========================================================================
+   quiz.css — estilos do quiz
+   ========================================================================== */
+
+.quiz {
+  padding: var(--space-8) var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* Progresso */
+.quiz__progress {
+  height: 6px;
+  margin-bottom: var(--space-2);
+  background: var(--color-divider);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.quiz__progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--color-primary);
+  transition: width var(--duration-slow) var(--easing);
+}
+
+.quiz__step {
+  margin-bottom: var(--space-6);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* Pergunta */
+.quiz__question { margin-bottom: var(--space-6); }
+
+.quiz__question:focus { outline: none; }
+
+.quiz__options {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.quiz__option {
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-3) var(--space-6);
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration) var(--easing), background var(--duration) var(--easing);
+}
+
+.quiz__option:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-subtle);
+}
+
+.quiz__option[aria-pressed="true"] {
+  border: 2px solid var(--color-primary);
+  background: var(--color-surface-subtle);
+  font-weight: 700;
+}
+
+.quiz__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* Intro e resultado */
+.quiz__intro,
+.quiz__result { text-align: center; }
+
+.quiz__intro p,
+.quiz__result p {
+  margin-bottom: var(--space-6);
+  color: var(--color-text-secondary);
+}
+
+.quiz__result-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+}
+
+.quiz__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* Animação de troca de etapa */
+.quiz__screen { animation: quiz-fade var(--duration-slow) var(--easing); }
+
+@keyframes quiz-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}

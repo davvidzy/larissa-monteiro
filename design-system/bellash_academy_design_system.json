@@ -1,0 +1,496 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Bellash Academy",
+  "version": "1.0.0",
+  "description": "Design system para website, quiz, checkout, landing pages e materiais digitais. Tokens em CSS-friendly values.",
+  "brand": {
+    "name": "Bellash Academy",
+    "persona": "Larissa Monteiro — apresentadora virtual",
+    "style": [
+      "feminino",
+      "elegante",
+      "acessível",
+      "clean",
+      "confiável"
+    ],
+    "usage": "Tema light como padrão. Rose para CTA principal; gold somente detalhes premium."
+  },
+  "colors": {
+    "primitive": {
+      "rose": {
+        "50": "#FFF6FA",
+        "100": "#FCEAF2",
+        "200": "#F6D0E0",
+        "300": "#EBA9C5",
+        "400": "#D77DA6",
+        "500": "#BD5687",
+        "600": "#A43D70",
+        "700": "#862D59",
+        "800": "#672443",
+        "900": "#46182E",
+        "950": "#2D111F"
+      },
+      "wine": {
+        "50": "#FBF5F7",
+        "100": "#F4E6EC",
+        "200": "#E8C9D5",
+        "300": "#D5A2B7",
+        "400": "#B97792",
+        "500": "#95536F",
+        "600": "#793D59",
+        "700": "#602D46",
+        "800": "#482239",
+        "900": "#301827",
+        "950": "#21101C"
+      },
+      "blush": {
+        "50": "#FFFBFC",
+        "100": "#FFF4F7",
+        "200": "#FDE8EE",
+        "300": "#FAD7E3",
+        "400": "#F5BCCC",
+        "500": "#EA9FB6",
+        "600": "#D77C9B",
+        "700": "#B45A7D",
+        "800": "#8D415F",
+        "900": "#652F48"
+      },
+      "champagne": {
+        "50": "#FFFDF8",
+        "100": "#FBF5E9",
+        "200": "#F3E5CA",
+        "300": "#E9D4AC",
+        "400": "#D8B77E",
+        "500": "#BC965B",
+        "600": "#967445",
+        "700": "#735735",
+        "800": "#57432C",
+        "900": "#3B3023"
+      },
+      "neutral": {
+        "0": "#FFFFFF",
+        "50": "#FCFAFB",
+        "100": "#F7F3F5",
+        "200": "#EDE6E9",
+        "300": "#DCCFD5",
+        "400": "#B7A7AF",
+        "500": "#8E7E87",
+        "600": "#6C5E66",
+        "700": "#50454B",
+        "800": "#352D32",
+        "900": "#231D21",
+        "950": "#161216",
+        "1000": "#000000"
+      },
+      "green": {
+        "50": "#F0FBF5",
+        "100": "#DDF6E8",
+        "500": "#21875B",
+        "600": "#166C47",
+        "700": "#115539"
+      },
+      "amber": {
+        "50": "#FFFAEB",
+        "100": "#FFF0C7",
+        "500": "#AA6A13",
+        "600": "#87510D"
+      },
+      "red": {
+        "50": "#FFF2F3",
+        "100": "#FFE1E5",
+        "500": "#C83E55",
+        "600": "#AA2841"
+      },
+      "blue": {
+        "50": "#F0F6FF",
+        "100": "#DCEAFF",
+        "500": "#356CB5",
+        "600": "#24568F"
+      }
+    },
+    "semantic": {
+      "light": {
+        "background": "#FCFAFB",
+        "surface": "#FFFFFF",
+        "surfaceSubtle": "#FFF6FA",
+        "surfaceMuted": "#F7F3F5",
+        "surfaceRaised": "#FFFFFF",
+        "textPrimary": "#231D21",
+        "textSecondary": "#50454B",
+        "textMuted": "#6C5E66",
+        "textOnBrand": "#FFFFFF",
+        "heading": "#301827",
+        "border": "#DCCFD5",
+        "borderStrong": "#B7A7AF",
+        "divider": "#EDE6E9",
+        "brandPrimary": "#862D59",
+        "brandPrimaryHover": "#672443",
+        "brandPrimaryPressed": "#46182E",
+        "brandSecondary": "#F6D0E0",
+        "brandSecondaryText": "#672443",
+        "link": "#862D59",
+        "linkHover": "#602D46",
+        "focusRing": "#A43D70",
+        "selection": "#F6D0E0",
+        "premiumAccent": "#967445",
+        "success": "#166C47",
+        "successBg": "#F0FBF5",
+        "warning": "#87510D",
+        "warningBg": "#FFFAEB",
+        "error": "#AA2841",
+        "errorBg": "#FFF2F3",
+        "info": "#24568F",
+        "infoBg": "#F0F6FF",
+        "overlay": "#161216B8"
+      },
+      "dark": {
+        "background": "#161216",
+        "surface": "#231D21",
+        "surfaceSubtle": "#301827",
+        "surfaceMuted": "#352D32",
+        "surfaceRaised": "#482239",
+        "textPrimary": "#FFF6FA",
+        "textSecondary": "#EDE6E9",
+        "textMuted": "#DCCFD5",
+        "textOnBrand": "#231D21",
+        "heading": "#FFFFFF",
+        "border": "#6C5E66",
+        "borderStrong": "#8E7E87",
+        "divider": "#50454B",
+        "brandPrimary": "#F6D0E0",
+        "brandPrimaryHover": "#FAD7E3",
+        "brandPrimaryPressed": "#EBA9C5",
+        "brandSecondary": "#672443",
+        "brandSecondaryText": "#FFF6FA",
+        "link": "#FAD7E3",
+        "linkHover": "#FFFFFF",
+        "focusRing": "#EBA9C5",
+        "selection": "#672443",
+        "premiumAccent": "#E9D4AC",
+        "success": "#DDF6E8",
+        "successBg": "#115539",
+        "warning": "#FFF0C7",
+        "warningBg": "#57432C",
+        "error": "#FFE1E5",
+        "errorBg": "#672433",
+        "info": "#DCEAFF",
+        "infoBg": "#24568F",
+        "overlay": "#000000CC"
+      }
+    },
+    "gradients": {
+      "hero": "linear-gradient(135deg, #FFF6FA 0%, #F6D0E0 55%, #FBF5E9 100%)",
+      "brand": "linear-gradient(135deg, #862D59 0%, #BD5687 100%)",
+      "premium": "linear-gradient(120deg, #F3E5CA 0%, #D8B77E 100%)",
+      "darkHero": "linear-gradient(135deg, #301827 0%, #161216 100%)"
+    }
+  },
+  "typography": {
+    "fontFamilies": {
+      "display": "'Cormorant Garamond', Georgia, serif",
+      "body": "'DM Sans', Arial, sans-serif",
+      "ui": "'DM Sans', Arial, sans-serif"
+    },
+    "sources": {
+      "display": "Google Fonts — Cormorant Garamond",
+      "body": "Google Fonts — DM Sans"
+    },
+    "fontWeights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "letterSpacing": {
+      "tight": "-0.03em",
+      "normal": "0em",
+      "wide": "0.06em",
+      "overline": "0.14em"
+    },
+    "scale": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "3.75rem"
+    },
+    "styles": {
+      "display": {
+        "fontFamily": "display",
+        "fontSize": "clamp(2.75rem, 6vw, 4.5rem)",
+        "fontWeight": 600,
+        "lineHeight": 1.06,
+        "letterSpacing": "-0.03em"
+      },
+      "h1": {
+        "fontFamily": "display",
+        "fontSize": "clamp(2.375rem, 5vw, 3.75rem)",
+        "fontWeight": 600,
+        "lineHeight": 1.1,
+        "letterSpacing": "-0.03em"
+      },
+      "h2": {
+        "fontFamily": "display",
+        "fontSize": "clamp(2rem, 4vw, 3rem)",
+        "fontWeight": 600,
+        "lineHeight": 1.15,
+        "letterSpacing": "-0.02em"
+      },
+      "h3": {
+        "fontFamily": "body",
+        "fontSize": "clamp(1.375rem, 2.3vw, 1.75rem)",
+        "fontWeight": 700,
+        "lineHeight": 1.3,
+        "letterSpacing": "-0.02em"
+      },
+      "body": {
+        "fontFamily": "body",
+        "fontSize": "1rem",
+        "fontWeight": 400,
+        "lineHeight": 1.65,
+        "letterSpacing": "0em"
+      },
+      "bodyLarge": {
+        "fontFamily": "body",
+        "fontSize": "1.125rem",
+        "fontWeight": 400,
+        "lineHeight": 1.65,
+        "letterSpacing": "0em"
+      },
+      "small": {
+        "fontFamily": "body",
+        "fontSize": "0.875rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "0em"
+      },
+      "caption": {
+        "fontFamily": "body",
+        "fontSize": "0.75rem",
+        "fontWeight": 500,
+        "lineHeight": 1.5,
+        "letterSpacing": "0.01em"
+      },
+      "button": {
+        "fontFamily": "ui",
+        "fontSize": "1rem",
+        "fontWeight": 700,
+        "lineHeight": 1.25,
+        "letterSpacing": "0.01em"
+      },
+      "eyebrow": {
+        "fontFamily": "ui",
+        "fontSize": "0.75rem",
+        "fontWeight": 700,
+        "lineHeight": 1.4,
+        "letterSpacing": "0.14em",
+        "textTransform": "uppercase"
+      },
+      "price": {
+        "fontFamily": "body",
+        "fontSize": "clamp(2rem, 4vw, 3rem)",
+        "fontWeight": 700,
+        "lineHeight": 1.1,
+        "letterSpacing": "-0.03em"
+      }
+    }
+  },
+  "layout": {
+    "spacing": {
+      "0": "0",
+      "1": "0.25rem",
+      "2": "0.5rem",
+      "3": "0.75rem",
+      "4": "1rem",
+      "5": "1.25rem",
+      "6": "1.5rem",
+      "8": "2rem",
+      "10": "2.5rem",
+      "12": "3rem",
+      "16": "4rem",
+      "20": "5rem",
+      "24": "6rem"
+    },
+    "radius": {
+      "sm": "0.375rem",
+      "md": "0.625rem",
+      "lg": "0.875rem",
+      "xl": "1.25rem",
+      "2xl": "1.75rem",
+      "pill": "9999px"
+    },
+    "shadow": {
+      "sm": "0 2px 8px #3018270D",
+      "md": "0 8px 24px #30182714",
+      "lg": "0 18px 48px #3018271C",
+      "focus": "0 0 0 3px #EBA9C5"
+    },
+    "breakpoints": {
+      "mobile": "0px",
+      "tablet": "768px",
+      "desktop": "1024px",
+      "wide": "1440px"
+    },
+    "container": {
+      "maxWidth": "1200px",
+      "readingWidth": "720px",
+      "quizWidth": "640px",
+      "checkoutWidth": "920px",
+      "gutterMobile": "16px",
+      "gutterDesktop": "32px"
+    },
+    "motion": {
+      "fast": "120ms",
+      "normal": "200ms",
+      "slow": "320ms",
+      "easing": "cubic-bezier(0.2, 0, 0, 1)"
+    }
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "background": "{colors.semantic.light.brandPrimary}",
+        "color": "{colors.semantic.light.textOnBrand}",
+        "hover": "{colors.semantic.light.brandPrimaryHover}",
+        "minHeight": "48px",
+        "borderRadius": "{layout.radius.pill}",
+        "paddingInline": "24px"
+      },
+      "secondary": {
+        "background": "{colors.semantic.light.brandSecondary}",
+        "color": "{colors.semantic.light.brandSecondaryText}",
+        "minHeight": "48px",
+        "borderRadius": "{layout.radius.pill}"
+      },
+      "outline": {
+        "background": "transparent",
+        "border": "1px solid {colors.semantic.light.brandPrimary}",
+        "color": "{colors.semantic.light.brandPrimary}",
+        "minHeight": "48px",
+        "borderRadius": "{layout.radius.pill}"
+      },
+      "disabled": {
+        "background": "#EDE6E9",
+        "color": "#6C5E66"
+      }
+    },
+    "input": {
+      "minHeight": "48px",
+      "background": "{colors.semantic.light.surface}",
+      "text": "{colors.semantic.light.textPrimary}",
+      "border": "{colors.semantic.light.borderStrong}",
+      "focusBorder": "{colors.semantic.light.brandPrimary}",
+      "borderRadius": "{layout.radius.md}"
+    },
+    "card": {
+      "background": "{colors.semantic.light.surface}",
+      "border": "{colors.semantic.light.border}",
+      "borderRadius": "{layout.radius.xl}",
+      "shadow": "{layout.shadow.sm}",
+      "padding": "24px"
+    },
+    "quizOption": {
+      "minHeight": "56px",
+      "borderRadius": "{layout.radius.lg}",
+      "defaultBorder": "{colors.semantic.light.borderStrong}",
+      "selectedBorder": "{colors.semantic.light.brandPrimary}",
+      "selectedBackground": "{colors.semantic.light.surfaceSubtle}"
+    },
+    "pricingFeatured": {
+      "border": "2px solid {colors.semantic.light.brandPrimary}",
+      "background": "{colors.semantic.light.surface}",
+      "badgeBackground": "{colors.semantic.light.brandPrimary}",
+      "badgeText": "#FFFFFF"
+    },
+    "modal": {
+      "maxWidth": "480px",
+      "background": "{colors.semantic.light.surface}",
+      "radius": "{layout.radius.2xl}",
+      "overlay": "{colors.semantic.light.overlay}"
+    },
+    "badge": {
+      "background": "{colors.semantic.light.surfaceSubtle}",
+      "text": "{colors.semantic.light.brandPrimary}",
+      "borderRadius": "{layout.radius.pill}"
+    },
+    "alert": {
+      "success": {
+        "background": "{colors.semantic.light.successBg}",
+        "foreground": "{colors.semantic.light.success}"
+      },
+      "warning": {
+        "background": "{colors.semantic.light.warningBg}",
+        "foreground": "{colors.semantic.light.warning}"
+      },
+      "error": {
+        "background": "{colors.semantic.light.errorBg}",
+        "foreground": "{colors.semantic.light.error}"
+      }
+    }
+  },
+  "pages": {
+    "website": {
+      "theme": "light",
+      "heroGradient": "{colors.gradients.hero}",
+      "primaryCTA": "{components.button.primary}",
+      "bodyMaxWidth": "{layout.container.maxWidth}"
+    },
+    "quiz": {
+      "theme": "light",
+      "maxWidth": "{layout.container.quizWidth}",
+      "option": "{components.quizOption}",
+      "progressFill": "{colors.semantic.light.brandPrimary}"
+    },
+    "checkout": {
+      "theme": "light",
+      "maxWidth": "{layout.container.checkoutWidth}",
+      "selectedPlanBorder": "{colors.semantic.light.brandPrimary}",
+      "orderBumpBackground": "{colors.semantic.light.surfaceSubtle}"
+    },
+    "upgradePopup": {
+      "component": "{components.modal}",
+      "discountText": "{colors.semantic.light.success}",
+      "priceText": "{colors.semantic.light.brandPrimary}"
+    },
+    "pdf": {
+      "background": "#FFFFFF",
+      "heading": "#301827",
+      "body": "#231D21",
+      "sectionBackground": "#FFF6FA",
+      "accent": "#862D59",
+      "displayFont": "{typography.fontFamilies.display}",
+      "bodyFont": "{typography.fontFamilies.body}"
+    }
+  },
+  "accessibility": {
+    "minimumBodySize": "16px",
+    "minimumTouchTarget": "44px",
+    "focusVisible": "2px solid #A43D70",
+    "textContrastTarget": "WCAG AA 4.5:1 for normal text, 3:1 for large text",
+    "notes": [
+      "Não usar rosa pastel ou dourado claro para texto pequeno sobre branco.",
+      "Reservar rose 700 ou mais escuro para CTA com texto branco.",
+      "Verificar contraste após alterações e em estados hover/disabled.",
+      "Respeitar prefers-reduced-motion."
+    ]
+  },
+  "assets": {
+    "logoVariants": [
+      "primary",
+      "monochrome",
+      "reversed",
+      "symbol"
+    ],
+    "imageGuidelines": [
+      "fotografia natural com luz suave",
+      "fundo limpo blush, creme ou neutro",
+      "não usar resultados/depoimentos fabricados",
+      "manter protagonista e produto visualmente consistentes"
+    ]
+  }
+}

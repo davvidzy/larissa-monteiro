@@ -1,11 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <!-- SEO -->
+  <title>Bellash Academy | Extensão de Cílios com Larissa Monteiro</title>
+  <meta name="description" content="Faça o quiz da Bellash Academy com Larissa Monteiro e descubra o caminho ideal para você no universo dos cílios.">
+  <link rel="canonical" href="https://SEU-DOMINIO.com.br/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#862D59">
+
+  <!-- Open Graph / redes sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Bellash Academy">
+  <meta property="og:title" content="Bellash Academy | Extensão de Cílios com Larissa Monteiro">
+  <meta property="og:description" content="Faça o quiz e descubra o caminho ideal para você no universo dos cílios.">
+  <meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+  <meta property="og:image" content="https://SEU-DOMINIO.com.br/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Ícones e manifest -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fontes (design system: Cormorant Garamond + DM Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/quiz.css">
+
+  <!-- Scripts (defer: executam após o HTML carregar, na ordem abaixo) -->
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/quiz-data.js" defer></script>
+  <script src="assets/js/quiz.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-  
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="./" aria-label="Bellash Academy — início">
+        <img src="assets/img/logo.svg" alt="Bellash Academy" width="220" height="46">
+      </a>
+      <nav aria-label="Principal">
+        <a class="btn btn--small" href="#quiz" data-track="header_cta">Fazer o quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Com Larissa Monteiro</p>
+        <h1 class="hero__title">Descubra o olhar perfeito para você</h1>
+        <p class="hero__text">Responda algumas perguntas rápidas e receba uma recomendação personalizada.</p>
+        <a class="btn" href="#quiz" data-track="hero_cta">Começar o quiz</a>
+      </div>
+    </section>
+
+    <!-- QUIZ (renderizado por assets/js/quiz.js a partir de assets/js/quiz-data.js) -->
+    <section class="section" id="quiz" aria-labelledby="quiz-title">
+      <div class="container container--quiz">
+        <h2 class="section__title" id="quiz-title">Qual é o seu estilo de cílios?</h2>
+        <div class="quiz" data-quiz>
+          <noscript>Ative o JavaScript para fazer o quiz.</noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span data-year></span> Bellash Academy. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
