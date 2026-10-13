@@ -9,8 +9,8 @@ export function WhatsInside() {
       <Container className="lg:max-w-[880px]">
         <SectionHeading
           id="inside-title"
-          title="Tudo o que você precisa para organizar seus primeiros passos"
-          subtitle="Um material visual e direto ao ponto, pensado para quem está começando."
+          title="Muito mais que uma apostila!"
+          subtitle="Estude o material completo e utilize ferramentas práticas diretamente no Portal Bellash Academy, pelo celular ou computador."
         />
 
         <ul className="grid gap-4 md:grid-cols-2 md:gap-6">

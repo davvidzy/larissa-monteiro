@@ -56,6 +56,9 @@ export function Bonuses() {
                   INCLUSO NO COMPLETO
                 </span>
                 <h3 className="mt-1.5 text-[15px] leading-snug font-bold text-ink md:text-[16px]">{bonus.title}</h3>
+                {bonus.description && (
+                  <p className="mt-0.5 text-[13px] leading-snug text-ink-soft">{bonus.description}</p>
+                )}
                 <p className="mt-1 flex items-baseline gap-2">
                   {bonuses.showReferencePrices && bonus.referencePrice !== undefined && (
                     <s className="text-[13px] text-ink-soft" aria-label={`De ${formatPrice(bonus.referencePrice)}`}>

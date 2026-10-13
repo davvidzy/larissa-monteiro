@@ -127,6 +127,7 @@ export const features: Feature[] = [
 
 export type Bonus = {
   title: string;
+  description?: string;
   /**
    * Valor de referência exibido riscado ao lado de "GRÁTIS".
    * Use o preço pelo qual o material é (ou foi) realmente vendido avulso —
@@ -140,11 +141,36 @@ export const bonuses: { showReferencePrices: boolean; items: Bonus[] } = {
   /** Mostra os valores riscados (só os bônus que tiverem referencePrice). */
   showReferencePrices: true,
   items: [
-    { title: "Tabela Inteligente de Precificação", referencePrice: 49.9, image: null },
-    { title: "Ficha de Consulta e Anamnese", referencePrice: 25.9, image: null },
-    { title: "Checklist da Lash Iniciante", referencePrice: 22.9, image: null },
-    { title: "50 Ideias de Posts para Instagram", referencePrice: 39.9, image: null },
-    { title: "Guia de Cuidados Pós-Procedimento", referencePrice: 30.9, image: null },
+    {
+      title: "Calculadora de Precificação",
+      description: "Calcule custos e simule preços.",
+      referencePrice: 49.9,
+      image: null,
+    },
+    {
+      title: "Checklist Lash Iniciante",
+      description: "Organize seus estudos e acompanhe seu progresso.",
+      referencePrice: 22.9,
+      image: null,
+    },
+    {
+      title: "Ficha de Anamnese Digital",
+      description: "Preencha e exporte fichas em PDF.",
+      referencePrice: 25.9,
+      image: null,
+    },
+    {
+      title: "50 Ideias de Posts",
+      description: "Sugestões para planejar sua divulgação.",
+      referencePrice: 39.9,
+      image: null,
+    },
+    {
+      title: "Guia Pós-Procedimento",
+      description: "Orientações sobre cuidados com extensões.",
+      referencePrice: 30.9,
+      image: null,
+    },
   ],
 };
 
@@ -232,9 +258,9 @@ export const upgrade = {
 /* -------------------------------------------------------------------------- */
 
 export const checkout = {
-  start: "",
-  complete: "",
-  upgrade: "", // Kit Completo pelo preço especial do popup
+  start: "https://pay.wiapy.com/KytL3lE3h2-",
+  complete: "https://pay.wiapy.com/6c9YE1ry9Bqr",
+  upgrade: "https://pay.wiapy.com/NETzvueZdZI", // Kit Completo pelo preço especial do popup
   /** Repassa os parâmetros da URL (utm_*, fbclid, gclid...) para o checkout. */
   forwardQueryParams: true,
 };
@@ -249,12 +275,25 @@ export const faq = [
     answer: "Não. O material foi desenvolvido para iniciantes que desejam conhecer os fundamentos da área de cílios.",
   },
   {
+    question: "Preciso instalar aplicativo?",
+    answer: "Não. O portal funciona pelo navegador.",
+  },
+  {
     question: "Como recebo o material?",
     answer: "O acesso é digital, disponibilizado após a confirmação do pagamento.",
   },
   {
+    question: "Recebo PDFs?",
+    answer:
+      "Sim. Os materiais de leitura são disponibilizados em PDF e as ferramentas funcionam dentro do portal.",
+  },
+  {
     question: "O pagamento é mensal?",
     answer: "Não. É uma compra única.",
+  },
+  {
+    question: "Recebo certificado profissional?",
+    answer: "Não. O kit é educativo e não substitui formação prática supervisionada.",
   },
   {
     question: "Posso aprender a aplicar cílios somente com o PDF?",
