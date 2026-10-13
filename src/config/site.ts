@@ -7,6 +7,13 @@
 import type { LucideIcon } from "lucide-react";
 import { BookOpen, Eye, GraduationCap, Users } from "lucide-react";
 
+/**
+ * Caminho de um arquivo de public/ visto da landing.
+ * A landing fica sempre em <raiz do site>/oferta/, então public/ está um nível acima.
+ * Relativo de propósito: funciona com o site na raiz do domínio ou em subpasta.
+ */
+const asset = (path: string) => `../${path}`;
+
 /* -------------------------------------------------------------------------- */
 /* Marca                                                                      */
 /* -------------------------------------------------------------------------- */
@@ -19,9 +26,9 @@ export const brand = {
     role: "Apresentadora virtual da Bellash Academy",
   },
   logo: {
-    horizontal: "/img/logo.svg",
-    vertical: "/img/logo-vertical.svg",
-    icon: "/img/logo-icone.svg",
+    horizontal: asset("img/logo.svg"),
+    vertical: asset("img/logo-vertical.svg"),
+    icon: asset("img/logo-icone.svg"),
   },
   // Preencha com as URLs reais antes de publicar
   links: {
@@ -45,8 +52,8 @@ export type ResponsiveImage = {
 
 export const images = {
   presenter: {
-    src: "/img/larissa-monteiro-800.webp",
-    srcSet: "/img/larissa-monteiro-400.webp 400w, /img/larissa-monteiro-800.webp 800w",
+    src: asset("img/larissa-monteiro-800.webp"),
+    srcSet: `${asset("img/larissa-monteiro-400.webp")} 400w, ${asset("img/larissa-monteiro-800.webp")} 800w`,
     width: 800,
     height: 1067,
     alt: "Larissa Monteiro, apresentadora virtual da Bellash Academy",

@@ -30,23 +30,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="/quiz/assets/css/base.css">
-  <link rel="stylesheet" href="/quiz/assets/css/style.css">
-  <link rel="stylesheet" href="/quiz/assets/css/quiz.css">
-
-  <!-- Scripts (defer: executam após o HTML carregar, na ordem abaixo) -->
-  <script src="/quiz/assets/js/config.js" defer></script>
-  <script src="/quiz/assets/js/quiz-data.js" defer></script>
-  <script src="/quiz/assets/js/quiz.js" defer></script>
-  <script src="/quiz/assets/js/main.js" defer></script>
+  <!-- Estilos e scripts do quiz (pasta quiz/, empacotados pelo Vite no build) -->
+  <link rel="stylesheet" href="./quiz/css/base.css">
+  <link rel="stylesheet" href="./quiz/css/style.css">
+  <link rel="stylesheet" href="./quiz/css/quiz.css">
+  <script type="module" src="./quiz/js/index.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="/" aria-label="Bellash Academy — início">
+      <a class="brand" href="./" aria-label="Bellash Academy — início">
         <img src="/img/logo.svg" alt="Bellash Academy" width="220" height="46">
       </a>
       <nav aria-label="Principal">
@@ -66,7 +61,7 @@
       </div>
     </section>
 
-    <!-- QUIZ (renderizado por assets/js/quiz.js a partir de assets/js/quiz-data.js) -->
+    <!-- QUIZ (renderizado por quiz/js/quiz.js a partir de quiz/js/quiz-data.js) -->
     <section class="section" id="quiz" aria-labelledby="quiz-title">
       <div class="container container--quiz">
         <h2 class="section__title" id="quiz-title">Qual é o seu estilo de cílios?</h2>

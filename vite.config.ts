@@ -3,9 +3,11 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 // Duas páginas:
-//  /         → quiz de qualificação (index.html; scripts em public/quiz/assets)
-//  /oferta/  → landing page de vendas em React (oferta/index.html)
+//  /         → quiz de qualificação (index.html + pasta quiz/)
+//  /oferta/  → landing page de vendas em React (oferta/index.html + src/)
 export default defineConfig({
+  // Caminhos relativos no build: o site funciona na raiz do domínio ou em subpasta
+  base: "./",
   plugins: [react(), tailwindcss()],
   build: {
     rolldownOptions: {

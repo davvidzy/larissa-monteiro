@@ -19,7 +19,9 @@ npm run preview    # serve o dist/ localmente
 npm run images     # converte images-src/*.png|jpg em WebP (public/img/)
 ```
 
-> A landing (`oferta/index.html`) é só a entrada do Vite (carrega `/src/main.tsx`) e fica **em branco** se aberta direto no navegador ou publicada sem build. Para visualizar, use `npm run dev` e acesse `/` (quiz) ou `/oferta/`.
+> Os arquivos `index.html` e `oferta/index.html` são entradas do Vite: abertos direto do disco, por Live Server ou publicados sem build, ficam sem estilo ou em branco. Para visualizar, use `npm run dev` e acesse `/` (quiz) ou `/oferta/`. O que vai para o ar é sempre o conteúdo de `dist/`.
+>
+> O build usa caminhos relativos (`base: "./"`), então o site funciona tanto na raiz do domínio quanto numa subpasta.
 
 ## Deploy (Hostinger)
 
@@ -33,6 +35,10 @@ O `public/.htaccess` (copiado para o site) cuida da página 404, HTTPS, compress
 
 ```
 index.html                 # Quiz (página inicial)
+quiz/
+  css/                     # Estilos do quiz
+  js/quiz-data.js          # ← Perguntas, opções e resultados
+  js/config.js             # ← Destino e texto do botão do resultado
 oferta/index.html          # HTML base da landing (SEO, Open Graph, fontes)
 src/                       # Código da landing
   config/site.ts           # ← TUDO o que é editável: marca, imagens, vídeo,
@@ -45,7 +51,6 @@ src/                       # Código da landing
   index.css                # Tokens da marca (cores, fontes, raios, sombras)
 public/                    # Copiado como está para o site final
   img/                     # Logos e imagens otimizadas (WebP)
-  quiz/assets/             # CSS/JS do quiz (conteúdo em quiz-data.js, destino em config.js)
   robots.txt, sitemap.xml, site.webmanifest, favicon.svg, 404.html
 images-src/                # Imagens originais (PNG/JPG) — fonte do `npm run images`
 design-system/             # Fonte da verdade da marca (tokens JSON + logos originais)
@@ -59,7 +64,7 @@ design-system/             # Fonte da verdade da marca (tokens JSON + logos orig
 - [ ] Adicionar `public/img/og-image.jpg` (1200×630) para compartilhamento
 - [ ] Instalar GA4/GTM e/ou Meta Pixel no `index.html` (os eventos já estão prontos)
 - [ ] Decidir se a seção de depoimentos fica visível enquanto não houver depoimentos reais (`testimonials.enabled`)
-- [ ] Mudar `debug` para `false` em `public/quiz/assets/js/config.js`
+- [ ] Mudar `debug` para `false` em `quiz/js/config.js`
 
 ## Como adicionar mídia
 
