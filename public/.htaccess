@@ -10,6 +10,11 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # O quiz ficava em /quiz/ e agora é a página inicial
+  RewriteRule ^quiz/?$ / [L,R=301]
+  # /oferta sem barra final → /oferta/
+  RewriteRule ^oferta$ /oferta/ [L,R=301]
 </IfModule>
 
 # Compressão

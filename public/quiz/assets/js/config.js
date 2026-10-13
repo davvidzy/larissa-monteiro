@@ -4,7 +4,7 @@
 
 window.SITE_CONFIG = {
   // Para onde o botão do resultado leva (a landing page de vendas)
-  resultUrl: "/#planos",
+  resultUrl: "/oferta/#planos",
   resultCta: "Ver o material ideal para mim",
 
   // Ativa logs de eventos no console (desligue em produção)

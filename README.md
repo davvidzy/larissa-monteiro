@@ -1,6 +1,13 @@
 # Bellash Academy — Landing Page Kit Lash do Zero
 
-Landing page de vendas (React + TypeScript + Tailwind CSS + Lucide) do **Kit Lash do Zero Completo** e do **Guia Lash Start**, apresentados por Larissa Monteiro (apresentadora virtual). É o destino final do quiz de qualificação.
+Funil da Bellash Academy, apresentado por Larissa Monteiro (apresentadora virtual):
+
+| URL        | Página                                                        | Arquivo de entrada   |
+| ---------- | ------------------------------------------------------------- | -------------------- |
+| `/`        | Quiz de qualificação (HTML/CSS/JS estático)                   | `index.html`         |
+| `/oferta/` | Landing de vendas do Kit Lash do Zero (React + TS + Tailwind) | `oferta/index.html`  |
+
+O resultado do quiz leva para `/oferta/#planos`, mantendo as UTMs e acrescentando `quiz_result`.
 
 ## Comandos
 
@@ -12,7 +19,7 @@ npm run preview    # serve o dist/ localmente
 npm run images     # converte images-src/*.png|jpg em WebP (public/img/)
 ```
 
-> O `index.html` da raiz é só a entrada do Vite (carrega `/src/main.tsx`) e fica **em branco** se aberto direto no navegador ou publicado sem build. Para visualizar, use `npm run dev`.
+> A landing (`oferta/index.html`) é só a entrada do Vite (carrega `/src/main.tsx`) e fica **em branco** se aberta direto no navegador ou publicada sem build. Para visualizar, use `npm run dev` e acesse `/` (quiz) ou `/oferta/`.
 
 ## Deploy (Hostinger)
 
@@ -25,8 +32,9 @@ O `public/.htaccess` (copiado para o site) cuida da página 404, HTTPS, compress
 ## Estrutura
 
 ```
-index.html                 # HTML base da landing (SEO, Open Graph, fontes)
-src/
+index.html                 # Quiz (página inicial)
+oferta/index.html          # HTML base da landing (SEO, Open Graph, fontes)
+src/                       # Código da landing
   config/site.ts           # ← TUDO o que é editável: marca, imagens, vídeo,
                            #   depoimentos, bônus, preços, timer, checkout, FAQ
   components/sections/     # Uma seção da página por arquivo, na ordem do App.tsx
@@ -37,7 +45,7 @@ src/
   index.css                # Tokens da marca (cores, fontes, raios, sombras)
 public/                    # Copiado como está para o site final
   img/                     # Logos e imagens otimizadas (WebP)
-  quiz/                    # Quiz de qualificação (HTML/CSS/JS estático) → /quiz/
+  quiz/assets/             # CSS/JS do quiz (conteúdo em quiz-data.js, destino em config.js)
   robots.txt, sitemap.xml, site.webmanifest, favicon.svg, 404.html
 images-src/                # Imagens originais (PNG/JPG) — fonte do `npm run images`
 design-system/             # Fonte da verdade da marca (tokens JSON + logos originais)
@@ -47,7 +55,7 @@ design-system/             # Fonte da verdade da marca (tokens JSON + logos orig
 
 - [ ] **URLs de checkout** em `src/config/site.ts` → `checkout.start`, `checkout.complete`, `checkout.upgrade` (sem elas os botões de compra não redirecionam)
 - [ ] Links de **Política de Privacidade, Termos de Uso e Contato** em `brand.links`
-- [ ] Trocar `SEU-DOMINIO.com.br` em `index.html`, `public/robots.txt`, `public/sitemap.xml` e `public/quiz/index.html`
+- [ ] Trocar `SEU-DOMINIO.com.br` em `index.html`, `oferta/index.html`, `public/robots.txt` e `public/sitemap.xml`
 - [ ] Adicionar `public/img/og-image.jpg` (1200×630) para compartilhamento
 - [ ] Instalar GA4/GTM e/ou Meta Pixel no `index.html` (os eventos já estão prontos)
 - [ ] Decidir se a seção de depoimentos fica visível enquanto não houver depoimentos reais (`testimonials.enabled`)
