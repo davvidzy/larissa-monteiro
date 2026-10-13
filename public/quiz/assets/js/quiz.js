@@ -115,12 +115,14 @@
       return Object.keys(scores).reduce((best, key) => (scores[key] > scores[best] ? key : best));
     }
 
-    function whatsappLink(result) {
-      const summary = data.questions
-        .map((q, i) => `• ${q.question} ${q.options[state.answers[i]].label}`)
-        .join("\n");
-      const message = `${config.whatsappIntro} *${result.title}*\n\n${summary}`;
-      return `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(message)}`;
+    /** Leva à landing mantendo os parâmetros de campanha (utm_*, fbclid...). */
+    function resultLink(key) {
+      const url = new URL(config.resultUrl || "/", window.location.href);
+      new URLSearchParams(window.location.search).forEach((value, name) => {
+        if (!url.searchParams.has(name)) url.searchParams.set(name, value);
+      });
+      url.searchParams.set("quiz_result", key);
+      return url.pathname + url.search + url.hash;
     }
 
     function renderResult() {
@@ -138,11 +140,9 @@
           el("div", { class: "quiz__actions" }, [
             el("a", {
               class: "btn",
-              href: whatsappLink(result),
-              target: "_blank",
-              rel: "noopener",
-              text: "Agendar pelo WhatsApp",
-              on: { click: () => track("whatsapp_click", { result: key }) },
+              href: resultLink(key),
+              text: config.resultCta || "Continuar",
+              on: { click: () => track("quiz_result_click", { result: key }) },
             }),
             el("button", {
               class: "btn btn--outline",
