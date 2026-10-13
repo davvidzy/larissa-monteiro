@@ -8,5 +8,5 @@ window.SITE_CONFIG = {
   resultUrl: "oferta/",
 
   // Ativa logs de eventos no console (desligue em produção)
-  debug: true,
+  debug: false,
 };
