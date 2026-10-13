@@ -1,21 +1,14 @@
 import { Gift, Zap } from "lucide-react";
 import { promo } from "../../config/site";
-import { useCountdown } from "../../hooks/useCountdown";
+import type { Countdown } from "../../hooks/useCountdown";
 import { Container } from "../ui/Container";
 
 /**
  * Barra de largura total com o cronômetro da promoção.
- * Só aparece com `promo.active` e enquanto o prazo não terminou; depois disso
- * mostra a mensagem padrão, sem urgência (o prazo não reinicia ao recarregar).
+ * Recebe `countdown` nulo/expirado quando não há promoção em andamento e,
+ * nesse caso, mostra a mensagem padrão, sem urgência.
  */
-export function PromoTimer() {
-  const countdown = useCountdown({
-    enabled: promo.active,
-    endsAt: promo.endsAt,
-    durationSeconds: promo.durationSeconds,
-    storageKey: promo.storageKey,
-  });
-
+export function PromoTimer({ countdown }: { countdown: Countdown | null }) {
   if (!countdown || countdown.expired) {
     return (
       <Container className="mb-8">

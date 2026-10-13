@@ -140,11 +140,11 @@ export const bonuses: { showReferencePrices: boolean; items: Bonus[] } = {
   /** Mostra os valores riscados (só os bônus que tiverem referencePrice). */
   showReferencePrices: true,
   items: [
-    { title: "Tabela Inteligente de Precificação", image: null },
-    { title: "Ficha de Consulta e Anamnese", image: null },
-    { title: "Checklist da Lash Iniciante", image: null },
-    { title: "50 Ideias de Posts para Instagram", image: null },
-    { title: "Guia de Cuidados Pós-Procedimento", image: null },
+    { title: "Tabela Inteligente de Precificação", referencePrice: 49.9, image: null },
+    { title: "Ficha de Consulta e Anamnese", referencePrice: 25.9, image: null },
+    { title: "Checklist da Lash Iniciante", referencePrice: 22.9, image: null },
+    { title: "50 Ideias de Posts para Instagram", referencePrice: 39.9, image: null },
+    { title: "Guia de Cuidados Pós-Procedimento", referencePrice: 30.9, image: null },
   ],
 };
 

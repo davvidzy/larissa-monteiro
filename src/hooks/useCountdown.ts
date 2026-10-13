@@ -45,11 +45,13 @@ function resolveEnd({ enabled, endsAt, durationSeconds, storageKey }: Options): 
   return null;
 }
 
+export type Countdown = { expired: boolean; hours: string; minutes: string; seconds: string };
+
 /**
  * Contador regressivo. Retorna `null` quando não há promoção ativa
  * e `{ expired: true }` quando o prazo terminou (sem reiniciar).
  */
-export function useCountdown(options: Options) {
+export function useCountdown(options: Options): Countdown | null {
   const [end] = useState(() => resolveEnd(options));
   const [now, setNow] = useState(() => Date.now());
 

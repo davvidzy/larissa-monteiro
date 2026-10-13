@@ -1,5 +1,6 @@
 import { Gift } from "lucide-react";
-import { bonuses } from "../../config/site";
+import { bonuses, promo } from "../../config/site";
+import { useCountdown } from "../../hooks/useCountdown";
 import { formatPrice } from "../../lib/format";
 import { Container } from "../ui/Container";
 import { Picture } from "../ui/Picture";
@@ -7,7 +8,20 @@ import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { PromoTimer } from "./PromoTimer";
 
+/** Soma dos valores de referência (em centavos, para não acumular erro de ponto flutuante). */
+const bonusTotal =
+  bonuses.items.reduce((sum, bonus) => sum + Math.round((bonus.referencePrice ?? 0) * 100), 0) / 100;
+
 export function Bonuses() {
+  const countdown = useCountdown({
+    enabled: promo.active,
+    endsAt: promo.endsAt,
+    durationSeconds: promo.durationSeconds,
+    storageKey: promo.storageKey,
+  });
+  const promoRunning = !!countdown && !countdown.expired;
+  const showPrices = bonuses.showReferencePrices && bonusTotal > 0;
+
   return (
     <Section tone="blush" labelledBy="bonus-title">
       <Container className="lg:max-w-[880px]">
@@ -20,7 +34,7 @@ export function Bonuses() {
       </Container>
 
       {/* Barra do cronômetro: largura total, entre o título e os cards */}
-      <PromoTimer />
+      <PromoTimer countdown={countdown} />
 
       <Container className="lg:max-w-[880px]">
         <ol className="grid gap-3 md:grid-cols-2 md:gap-5">
@@ -54,6 +68,25 @@ export function Bonuses() {
             </li>
           ))}
         </ol>
+
+        {showPrices && (
+          <div className="mx-auto mt-8 max-w-[420px] rounded-card border-2 border-dashed border-success/40 bg-surface px-5 py-5 text-center shadow-soft">
+            <p className="text-[15px] text-ink-soft">
+              De: <s className="font-bold">{formatPrice(bonusTotal)}</s>
+            </p>
+            <p className="mt-1 flex items-baseline justify-center gap-2">
+              <span className="text-[17px] font-bold text-ink">por:</span>
+              <span className="text-[44px] leading-none font-bold tracking-[-0.03em] text-success">{formatPrice(0)}</span>
+            </p>
+            {promoRunning ? (
+              <p className="mt-3 inline-block rounded-full bg-success px-4 py-1.5 text-[14px] font-bold tracking-[0.1em] text-white">
+                APENAS HOJE
+              </p>
+            ) : (
+              <p className="mt-3 text-[14px] font-medium text-ink-soft">Incluídos no Kit Lash do Zero Completo</p>
+            )}
+          </div>
+        )}
       </Container>
     </Section>
   );
