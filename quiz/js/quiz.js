@@ -7,7 +7,8 @@
   "use strict";
 
   function createQuiz(root, data, config) {
-    const state = { index: -1, answers: [] };
+    // started: já houve interação (antes disso não movemos o foco ao renderizar)
+    const state = { index: -1, answers: [], started: false };
 
     const track = (name, params) =>
       window.Site && window.Site.track ? window.Site.track(name, params) : null;
@@ -25,21 +26,7 @@
 
     function mount(screen, focusTarget) {
       root.replaceChildren(screen);
-      if (focusTarget) focusTarget.focus({ preventScroll: true });
-    }
-
-    function renderIntro() {
-      mount(
-        el("div", { class: "quiz__screen quiz__intro" }, [
-          el("p", { text: data.intro.text }),
-          el("button", {
-            class: "btn",
-            type: "button",
-            text: data.intro.button,
-            on: { click: () => { track("quiz_start"); goTo(0); } },
-          }),
-        ])
-      );
+      if (focusTarget && state.started) focusTarget.focus({ preventScroll: true });
     }
 
     function renderQuestion() {
@@ -65,13 +52,18 @@
         )
       );
 
-      const back = el("button", {
-        class: "btn btn--outline",
-        type: "button",
-        text: "Voltar",
-        on: { click: () => goTo(state.index - 1) },
-      });
-      if (state.index === 0) back.disabled = true;
+      // Na primeira pergunta não há para onde voltar
+      const back =
+        state.index > 0
+          ? el("div", { class: "quiz__nav" }, [
+              el("button", {
+                class: "btn btn--outline",
+                type: "button",
+                text: "Voltar",
+                on: { click: () => goTo(state.index - 1) },
+              }),
+            ])
+          : null;
 
       mount(
         el("div", { class: "quiz__screen" }, [
@@ -87,7 +79,7 @@
           el("p", { class: "quiz__step", text: `Pergunta ${state.index + 1} de ${total}` }),
           heading,
           options,
-          el("div", { class: "quiz__nav" }, [back]),
+          back,
         ]),
         heading
       );
@@ -96,6 +88,10 @@
     function choose(optionIndex) {
       state.answers[state.index] = optionIndex;
       const q = data.questions[state.index];
+      if (!state.started) {
+        state.started = true;
+        track("quiz_start");
+      }
       track("quiz_answer", { question: q.id, answer: q.options[optionIndex].label });
       goTo(state.index + 1);
     }
@@ -170,7 +166,8 @@
       goTo(0);
     }
 
-    renderIntro();
+    // Começa direto na primeira pergunta
+    goTo(0);
   }
 
   document.querySelectorAll("[data-quiz]").forEach((root) => {

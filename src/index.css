@@ -37,7 +37,8 @@
     @apply bg-surface font-sans text-[15px] leading-[1.55] text-ink antialiased;
   }
 
-  /* Sem isso o Chromium posiciona os acentos da Cormorant flutuando (ê, á, ô) */
+  /* Kerning e ligaturas completos nos títulos. Obs.: os acentos altos e pontudos
+     (ê, á, ô) são do desenho da Cormorant Garamond, não um erro de renderização. */
   .font-display,
   h1,
   h2 {

@@ -62,9 +62,9 @@
 .site-header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--space-4);
-  min-height: 68px;
+  min-height: 64px;
 }
 
 .brand img { height: 36px; width: auto; }
@@ -105,6 +105,9 @@
 
 /* Seções */
 .section { padding-block: var(--space-16); }
+
+/* Quiz como primeira coisa da página: menos respiro no topo */
+.section--quiz { padding-block: var(--space-6) var(--space-16); }
 
 .section__title {
   text-align: center;

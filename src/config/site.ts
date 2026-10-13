@@ -127,45 +127,25 @@ export const features: Feature[] = [
 
 export type Bonus = {
   title: string;
-  description: string;
+  /**
+   * Valor de referência exibido riscado ao lado de "GRÁTIS".
+   * Use o preço pelo qual o material é (ou foi) realmente vendido avulso —
+   * nunca um valor sorteado ou inventado (CDC, art. 37: publicidade enganosa).
+   */
   referencePrice?: number;
   image: ResponsiveImage | null;
 };
 
-export const bonuses = {
-  showReferencePrices: false,
+export const bonuses: { showReferencePrices: boolean; items: Bonus[] } = {
+  /** Mostra os valores riscados (só os bônus que tiverem referencePrice). */
+  showReferencePrices: true,
   items: [
-    {
-      title: "Tabela Inteligente de Precificação",
-      description: "Organize custos e planeje seus preços.",
-      referencePrice: 19.9,
-      image: null,
-    },
-    {
-      title: "Ficha de Consulta e Anamnese",
-      description: "Modelo editável para seus futuros atendimentos.",
-      referencePrice: 17.9,
-      image: null,
-    },
-    {
-      title: "Checklist da Lash Iniciante",
-      description: "Materiais e organização em um só lugar.",
-      referencePrice: 14.9,
-      image: null,
-    },
-    {
-      title: "50 Ideias de Posts para Instagram",
-      description: "Inspirações para divulgar seus serviços.",
-      referencePrice: 19.9,
-      image: null,
-    },
-    {
-      title: "Guia de Cuidados Pós-Procedimento",
-      description: "Material educativo para orientar futuras clientes.",
-      referencePrice: 14.9,
-      image: null,
-    },
-  ] satisfies Bonus[],
+    { title: "Tabela Inteligente de Precificação", image: null },
+    { title: "Ficha de Consulta e Anamnese", image: null },
+    { title: "Checklist da Lash Iniciante", image: null },
+    { title: "50 Ideias de Posts para Instagram", image: null },
+    { title: "Guia de Cuidados Pós-Procedimento", image: null },
+  ],
 };
 
 /* -------------------------------------------------------------------------- */
@@ -180,12 +160,14 @@ export const bonuses = {
 /* -------------------------------------------------------------------------- */
 
 export const promo = {
-  active: false,
+  active: true,
   endsAt: "",
-  durationSeconds: 5 * 3600 + 32 * 60 + 42, // 05:32:42
-  storageKey: "bellash_promo_ends_at",
+  durationSeconds: 4 * 3600 + 23 * 60 + 42, // 04:23:42
+  storageKey: "bellash_promo_ends_at_v2",
   messages: {
-    active: "Condição promocional dos bônus disponível por:",
+    title: "PROMOÇÃO RELÂMPAGO",
+    subtitle: "5 Bônus grátis até esse timer acabar",
+    /** Exibida quando a promoção está desligada ou o prazo terminou. */
     inactive: "Os 5 bônus estão incluídos no Kit Completo.",
   },
 };

@@ -15,8 +15,14 @@ export function Bonuses() {
           id="bonus-title"
           title="E ainda tem 5 bônus especiais! 🎁"
           subtitle="Ferramentas extras para ajudar você a organizar sua jornada Lash."
+          className="mb-6! md:mb-8!"
         />
+      </Container>
 
+      {/* Barra do cronômetro: largura total, entre o título e os cards */}
+      <PromoTimer />
+
+      <Container className="lg:max-w-[880px]">
         <ol className="grid gap-3 md:grid-cols-2 md:gap-5">
           {bonuses.items.map((bonus, index) => (
             <li
@@ -36,18 +42,18 @@ export function Bonuses() {
                   INCLUSO NO COMPLETO
                 </span>
                 <h3 className="mt-1.5 text-[15px] leading-snug font-bold text-ink md:text-[16px]">{bonus.title}</h3>
-                <p className="mt-0.5 text-[13px] leading-snug text-ink-soft">{bonus.description}</p>
-                {bonuses.showReferencePrices && bonus.referencePrice && (
-                  <p className="mt-1 text-[13px] text-ink-soft">
-                    Valor de referência: <s>{formatPrice(bonus.referencePrice)}</s>
-                  </p>
-                )}
+                <p className="mt-1 flex items-baseline gap-2">
+                  {bonuses.showReferencePrices && bonus.referencePrice !== undefined && (
+                    <s className="text-[13px] text-ink-soft" aria-label={`De ${formatPrice(bonus.referencePrice)}`}>
+                      {formatPrice(bonus.referencePrice)}
+                    </s>
+                  )}
+                  <strong className="text-[15px] font-bold tracking-[0.04em] text-success">GRÁTIS</strong>
+                </p>
               </div>
             </li>
           ))}
         </ol>
-
-        <PromoTimer />
       </Container>
     </Section>
   );

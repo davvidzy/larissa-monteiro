@@ -10,11 +10,6 @@
    ========================================================================== */
 
 window.QUIZ_DATA = {
-  intro: {
-    text: "São só 4 perguntas rápidas. No final você recebe uma recomendação personalizada.",
-    button: "Começar",
-  },
-
   questions: [
     {
       id: "efeito",

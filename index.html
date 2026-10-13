@@ -44,27 +44,14 @@
       <a class="brand" href="./" aria-label="Bellash Academy — início">
         <img src="/img/logo.svg" alt="Bellash Academy" width="220" height="46">
       </a>
-      <nav aria-label="Principal">
-        <a class="btn btn--small" href="#quiz" data-track="header_cta">Fazer o quiz</a>
-      </nav>
     </div>
   </header>
 
   <main id="conteudo">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Com Larissa Monteiro</p>
-        <h1 class="hero__title">Descubra o olhar perfeito para você</h1>
-        <p class="hero__text">Responda algumas perguntas rápidas e receba uma recomendação personalizada.</p>
-        <a class="btn" href="#quiz" data-track="hero_cta">Começar o quiz</a>
-      </div>
-    </section>
-
-    <!-- QUIZ (renderizado por quiz/js/quiz.js a partir de quiz/js/quiz-data.js) -->
-    <section class="section" id="quiz" aria-labelledby="quiz-title">
+    <!-- QUIZ: abre direto na 1ª pergunta (quiz/js/quiz.js + quiz/js/quiz-data.js) -->
+    <section class="section section--quiz" id="quiz" aria-labelledby="quiz-title">
       <div class="container container--quiz">
-        <h2 class="section__title" id="quiz-title">Qual é o seu estilo de cílios?</h2>
+        <h1 class="visually-hidden" id="quiz-title">Quiz Bellash Academy</h1>
         <div class="quiz" data-quiz>
           <noscript>Ative o JavaScript para fazer o quiz.</noscript>
         </div>

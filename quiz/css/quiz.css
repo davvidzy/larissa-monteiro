@@ -73,11 +73,9 @@
   margin-top: var(--space-6);
 }
 
-/* Intro e resultado */
-.quiz__intro,
+/* Resultado */
 .quiz__result { text-align: center; }
 
-.quiz__intro p,
 .quiz__result p {
   margin-bottom: var(--space-6);
   color: var(--color-text-secondary);
