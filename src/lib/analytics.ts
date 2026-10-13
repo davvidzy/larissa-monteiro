@@ -8,6 +8,7 @@
 
 export type AnalyticsEvent =
   | "page_view"
+  | "landing_page_viewed"
   | "video_play"
   | "view_plans"
   | "select_start"

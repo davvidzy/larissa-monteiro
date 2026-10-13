@@ -80,4 +80,13 @@ design-system/             # Fonte da verdade da marca (tokens JSON + logos orig
 
 ## Eventos rastreados
 
-`page_view`, `video_play`, `view_plans`, `select_start`, `select_complete`, `upgrade_popup_open`, `upgrade_accept`, `upgrade_decline`, `begin_checkout` (enviado ao Meta como `InitiateCheckout`). Nada é enviado se nenhuma ferramenta estiver instalada. Em `npm run dev`, os eventos aparecem no console.
+**Quiz:** `quiz_start`, `quiz_question_answered` (com `question`, `question_number`, `answer`), `quiz_completed`, `quiz_result_viewed`, `quiz_cta_clicked`. Nenhum é enviado como conversão de compra.
+
+**Landing:** `page_view`, `landing_page_viewed` (com `from_quiz` e `quiz_result`), `video_play`, `view_plans`, `select_start`, `select_complete`, `upgrade_popup_open`, `upgrade_accept`, `upgrade_decline`, `begin_checkout` (enviado ao Meta como `InitiateCheckout`).
+
+Nada é enviado se nenhuma ferramenta estiver instalada. Em `npm run dev`, os eventos aparecem no console.
+
+## Regras do quiz
+
+- **Nenhum preço, plano, desconto ou oferta** em qualquer tela do quiz. Preços só na landing.
+- O resultado é definido pela 3ª pergunta (`defineResult: true` em `quiz/js/quiz-data.js`).

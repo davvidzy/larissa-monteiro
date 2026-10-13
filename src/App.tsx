@@ -18,6 +18,9 @@ export default function App() {
     if (pageViewTracked) return;
     pageViewTracked = true;
     track("page_view");
+    // Chegada à oferta; quiz_result indica de qual resultado do quiz a visitante veio
+    const quizResult = new URLSearchParams(window.location.search).get("quiz_result") ?? undefined;
+    track("landing_page_viewed", { from_quiz: !!quizResult, quiz_result: quizResult });
   }, []);
 
   return (

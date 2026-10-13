@@ -1,14 +1,21 @@
 /* ==========================================================================
    quiz.js — motor do quiz (não precisa editar para trocar o conteúdo;
    o conteúdo fica em quiz-data.js)
+
+   Fluxo: tela inicial → perguntas (uma por tela) → transição → resultado
    ========================================================================== */
 
 (function () {
   "use strict";
 
+  const INTRO = -1;
+  /** Pausa após o toque para a opção marcada ficar visível antes de avançar. */
+  const ADVANCE_DELAY_MS = 220;
+
   function createQuiz(root, data, config) {
     // started: já houve interação (antes disso não movemos o foco ao renderizar)
-    const state = { index: -1, answers: [], started: false };
+    const state = { index: INTRO, answers: [], started: false, busy: false };
+    const total = data.questions.length;
 
     const track = (name, params) =>
       window.Site && window.Site.track ? window.Site.track(name, params) : null;
@@ -24,17 +31,48 @@
       return node;
     }
 
-    function mount(screen, focusTarget) {
+    function mount(screen, { focus, card = true } = {}) {
+      root.classList.toggle("quiz--bare", !card);
       root.replaceChildren(screen);
-      if (focusTarget && state.started) focusTarget.focus({ preventScroll: true });
+      if (focus && state.started) focus.focus({ preventScroll: true });
+      // Cada etapa começa no topo (o quiz é o primeiro conteúdo da página)
+      if (state.started && window.scrollY > 0) window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* ---------------------------------------------------------------- */
+    /* Telas                                                            */
+    /* ---------------------------------------------------------------- */
+
+    function renderIntro() {
+      const intro = data.intro;
+      mount(
+        el("div", { class: "quiz__screen quiz__intro" }, [
+          el("p", { class: "quiz__badge", text: intro.badge }),
+          el("h2", { class: "quiz__intro-title", tabindex: "-1", text: intro.title }),
+          el("p", { class: "quiz__intro-text", text: intro.text }),
+          el("button", {
+            class: "btn btn--block",
+            type: "button",
+            text: intro.button,
+            on: {
+              click: () => {
+                state.started = true;
+                track("quiz_start");
+                goTo(0);
+              },
+            },
+          }),
+          el("p", { class: "quiz__note", text: intro.note }),
+        ]),
+        { card: false }
+      );
     }
 
     function renderQuestion() {
       const q = data.questions[state.index];
-      const total = data.questions.length;
       const selected = state.answers[state.index];
 
-      const heading = el("h3", { class: "quiz__question", tabindex: "-1", text: q.question });
+      const heading = el("h2", { class: "quiz__question", tabindex: "-1", text: q.question });
 
       const options = el(
         "ul",
@@ -46,30 +84,18 @@
               type: "button",
               "aria-pressed": String(selected === i),
               text: opt.label,
-              on: { click: () => choose(i) },
+              on: { click: (event) => choose(i, event.currentTarget) },
             }),
           ])
         )
       );
-
-      // Na primeira pergunta não há para onde voltar
-      const back =
-        state.index > 0
-          ? el("div", { class: "quiz__nav" }, [
-              el("button", {
-                class: "btn btn--outline",
-                type: "button",
-                text: "Voltar",
-                on: { click: () => goTo(state.index - 1) },
-              }),
-            ])
-          : null;
 
       mount(
         el("div", { class: "quiz__screen" }, [
           el("div", {
             class: "quiz__progress",
             role: "progressbar",
+            "aria-label": "Progresso do quiz",
             "aria-valuemin": "0",
             "aria-valuemax": String(total),
             "aria-valuenow": String(state.index + 1),
@@ -79,41 +105,109 @@
           el("p", { class: "quiz__step", text: `Pergunta ${state.index + 1} de ${total}` }),
           heading,
           options,
-          back,
+          el("div", { class: "quiz__nav" }, [
+            el("button", {
+              class: "quiz__back",
+              type: "button",
+              text: "← Voltar",
+              on: { click: () => goTo(state.index - 1) },
+            }),
+          ]),
         ]),
-        heading
+        { focus: heading }
       );
     }
 
-    function choose(optionIndex) {
-      state.answers[state.index] = optionIndex;
-      const q = data.questions[state.index];
-      if (!state.started) {
-        state.started = true;
-        track("quiz_start");
-      }
-      track("quiz_answer", { question: q.id, answer: q.options[optionIndex].label });
-      goTo(state.index + 1);
+    function renderTransition() {
+      const status = el("p", { class: "quiz__transition-text", role: "status", tabindex: "-1", text: data.transition.text });
+      mount(
+        el("div", { class: "quiz__screen quiz__transition" }, [
+          el("div", { class: "quiz__dots", "aria-hidden": "true" }, [el("span"), el("span"), el("span")]),
+          status,
+        ]),
+        { focus: status }
+      );
+      window.setTimeout(renderResult, data.transition.durationMs || 1000);
     }
 
-    function computeResult() {
-      const scores = {};
-      Object.keys(data.results).forEach((key) => (scores[key] = 0));
+    function renderResult() {
+      const key = resultKey();
+      const result = data.results[key];
+      const product = data.product;
+      track("quiz_result_viewed", { result: key });
 
-      state.answers.forEach((optionIndex, qIndex) => {
-        const points = data.questions[qIndex].options[optionIndex].points || {};
-        Object.entries(points).forEach(([key, value]) => {
-          scores[key] = (scores[key] || 0) + value;
-        });
+      const heading = el("h2", { class: "quiz__result-title", tabindex: "-1", text: result.title });
+
+      mount(
+        el("div", { class: "quiz__screen quiz__result" }, [
+          el("p", { class: "quiz__eyebrow", text: "Seu resultado" }),
+          heading,
+          el("p", { class: "quiz__result-text", text: result.text }),
+
+          el("div", { class: "quiz__product" }, [
+            el("h3", { class: "quiz__product-title", text: product.title }),
+            el("p", { class: "quiz__product-text", text: product.text }),
+            el(
+              "ul",
+              { class: "quiz__benefits" },
+              product.benefits.map((b) => el("li", { text: b }))
+            ),
+            el("a", {
+              class: "btn btn--block",
+              href: resultLink(key),
+              text: product.button,
+              on: { click: () => track("quiz_cta_clicked", { result: key }) },
+            }),
+          ]),
+        ]),
+        { focus: heading }
+      );
+    }
+
+    /* ---------------------------------------------------------------- */
+    /* Navegação e lógica                                               */
+    /* ---------------------------------------------------------------- */
+
+    function choose(optionIndex, button) {
+      if (state.busy) return;
+      state.busy = true;
+
+      const q = data.questions[state.index];
+      state.answers[state.index] = optionIndex;
+
+      // Marca a opção escolhida antes de avançar
+      root.querySelectorAll(".quiz__option").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      button.setAttribute("aria-pressed", "true");
+
+      track("quiz_question_answered", {
+        question: q.id,
+        question_number: state.index + 1,
+        answer: q.options[optionIndex].label,
       });
 
-      // Empate: vence o resultado que aparece primeiro em `results`
-      return Object.keys(scores).reduce((best, key) => (scores[key] > scores[best] ? key : best));
+      window.setTimeout(() => {
+        state.busy = false;
+        const next = state.index + 1;
+        if (next < total) {
+          goTo(next);
+        } else {
+          state.index = next;
+          track("quiz_completed", { result: resultKey() });
+          renderTransition();
+        }
+      }, ADVANCE_DELAY_MS);
+    }
+
+    /** Resultado definido pela resposta da pergunta marcada com `defineResult`. */
+    function resultKey() {
+      const qIndex = data.questions.findIndex((q) => q.defineResult);
+      const option = data.questions[qIndex].options[state.answers[qIndex]];
+      return option && option.result in data.results ? option.result : Object.keys(data.results)[0];
     }
 
     /** Leva à landing mantendo os parâmetros de campanha (utm_*, fbclid...). */
     function resultLink(key) {
-      const url = new URL(config.resultUrl || "/", window.location.href);
+      const url = new URL(config.resultUrl || "oferta/", window.location.href);
       new URLSearchParams(window.location.search).forEach((value, name) => {
         if (!url.searchParams.has(name)) url.searchParams.set(name, value);
       });
@@ -121,53 +215,13 @@
       return url.pathname + url.search + url.hash;
     }
 
-    function renderResult() {
-      const key = computeResult();
-      const result = data.results[key];
-      track("quiz_complete", { result: key });
-
-      const heading = el("h3", { class: "quiz__result-title", tabindex: "-1", text: result.title });
-
-      mount(
-        el("div", { class: "quiz__screen quiz__result", "aria-live": "polite" }, [
-          el("p", { class: "eyebrow", text: "Seu resultado" }),
-          heading,
-          el("p", { text: result.text }),
-          el("div", { class: "quiz__actions" }, [
-            el("a", {
-              class: "btn",
-              href: resultLink(key),
-              text: config.resultCta || "Continuar",
-              on: { click: () => track("quiz_result_click", { result: key }) },
-            }),
-            el("button", {
-              class: "btn btn--outline",
-              type: "button",
-              text: "Refazer o quiz",
-              on: { click: restart },
-            }),
-          ]),
-        ]),
-        heading
-      );
-    }
-
     function goTo(index) {
-      if (index < 0) return;
       state.index = index;
-      if (index >= data.questions.length) renderResult();
+      if (index === INTRO) renderIntro();
       else renderQuestion();
     }
 
-    function restart() {
-      state.index = -1;
-      state.answers = [];
-      track("quiz_restart");
-      goTo(0);
-    }
-
-    // Começa direto na primeira pergunta
-    goTo(0);
+    goTo(INTRO);
   }
 
   document.querySelectorAll("[data-quiz]").forEach((root) => {
