@@ -12,7 +12,15 @@ npm run preview    # serve o dist/ localmente
 npm run images     # converte images-src/*.png|jpg em WebP (public/img/)
 ```
 
-Publique o conteúdo da pasta `dist/` (Vercel, Netlify, Hostinger etc.).
+> O `index.html` da raiz é só a entrada do Vite (carrega `/src/main.tsx`) e fica **em branco** se aberto direto no navegador ou publicado sem build. Para visualizar, use `npm run dev`.
+
+## Deploy (Hostinger)
+
+A cada `git push` na `main`, o GitHub Action (`.github/workflows/deploy.yml`) roda o build e publica o conteúdo de `dist/` na branch **`deploy`**.
+
+No hPanel → **Git**, configure o repositório com a branch **`deploy`** e o diretório de instalação **vazio** (raiz do `public_html`). Ative o deploy automático (webhook) para atualizar a cada push.
+
+O `public/.htaccess` (copiado para o site) cuida da página 404, HTTPS, compressão e cache.
 
 ## Estrutura
 
