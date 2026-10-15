@@ -53,6 +53,33 @@ function PlanCard({ plan, onSelect }: { plan: Plan; onSelect: () => void }) {
         ))}
       </ul>
 
+      {plan.bonuses && plan.bonuses.length > 0 && (
+        <div className="-mx-2 mb-6 rounded-[14px] border border-primary-light bg-blush px-4 py-5">
+          <p className="text-[13px] font-bold tracking-[0.06em] text-primary">
+            🎁 VOCÊ TAMBÉM RECEBE {plan.bonuses.length} BÔNUS:
+          </p>
+          <ol className="mt-3 space-y-3">
+            {plan.bonuses.map((bonus, i) => (
+              <li key={bonus.title} className="flex items-start gap-3">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-[12px] font-bold text-white">
+                  {i + 1}
+                </span>
+                <p className="text-[14px] leading-snug text-ink-soft">
+                  <strong className="font-bold text-ink">{bonus.title}:</strong> {bonus.description}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 flex items-start gap-2 border-t border-primary-light pt-3 text-[13px] font-medium text-ink">
+            <Check aria-hidden="true" className="mt-px size-4 shrink-0 text-success" strokeWidth={2.5} />
+            <span>
+              Todos incluídos nos <strong className="font-bold">{formatPrice(plan.price)}</strong>, sem cobrança
+              adicional.
+            </span>
+          </p>
+        </div>
+      )}
+
       <Button variant={plan.featured ? "primary" : "outline"} fullWidth className="mt-auto" onClick={onSelect}>
         {plan.cta}
       </Button>

@@ -210,6 +210,8 @@ export type Plan = {
   price: number;
   tag: string;
   items: string[];
+  /** Bônus detalhados no card (apenas no Completo). Já incluídos em `price`. */
+  bonuses?: { title: string; description: string }[];
   cta: string;
   featured: boolean;
 };
@@ -240,7 +242,13 @@ export const plans: Plan[] = [
       "30 mapeamentos",
       "Materiais e fundamentos",
       "Precificação e divulgação",
-      "5 bônus incluídos",
+    ],
+    bonuses: [
+      { title: "Calculadora de Precificação Lash", description: "calcule custos, simule preços e margens." },
+      { title: "Checklist da Lash Iniciante", description: "organize seus estudos e acompanhe seu progresso." },
+      { title: "Ficha de Consulta e Anamnese Digital", description: "preencha formulários e exporte em PDF." },
+      { title: "50 Ideias de Posts para Instagram", description: "sugestões prontas para planejar sua divulgação." },
+      { title: "Guia de Cuidados Pós-Procedimento", description: "orientações de cuidados e higiene das extensões." },
     ],
     cta: "Quero o kit completo",
     featured: true,
