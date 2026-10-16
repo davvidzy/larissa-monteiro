@@ -69,7 +69,19 @@ design-system/             # Fonte da verdade da marca (tokens JSON + logos orig
 ## Como adicionar mídia
 
 - **Fotos/mockups:** coloque o PNG/JPG em `images-src/`, rode `npm run images` e referencie os arquivos gerados (`/img/<nome>-400.webp` e `-800.webp`) em `src/config/site.ts`, seguindo o exemplo de `images.presenter`.
-- **Vídeo:** preencha `video.src` (e opcionalmente `video.poster`). Vazio = placeholder.
+- **Vídeo (VSL):** os arquivos ficam em `public/video/` (`vsl.webm`, `vsl.mp4` e `vsl-poster.webp`) e são listados em `video.sources` / `video.poster` em `src/config/site.ts` (lista vazia = placeholder). O player começa pausado, toca/pausa ao tocar na tela, mostra tempo assistido e restante, e não permite avançar. Para trocar o vídeo, a partir de um MP4 vertical (9:16) e com o ffmpeg instalado:
+
+  ```bash
+  IN="video-original.mp4"; VF="scale=720:1280:flags=lanczos,format=yuv420p"
+  # MP4 (Safari/iPhone), ~1 Mbps em duas passagens
+  ffmpeg -y -i "$IN" -vf "$VF" -c:v libx264 -preset slow -b:v 1000k -maxrate 1500k -bufsize 3000k -pass 1 -an -f mp4 NUL
+  ffmpeg -y -i "$IN" -vf "$VF" -c:v libx264 -preset slow -b:v 1000k -maxrate 1500k -bufsize 3000k -pass 2 -profile:v high -level 4.0 -c:a aac -b:a 96k -movflags +faststart public/video/vsl.mp4
+  # WebM (Chrome/Android)
+  ffmpeg -y -i "$IN" -vf "$VF" -c:v libvpx-vp9 -b:v 850k -maxrate 1300k -deadline good -cpu-used 2 -row-mt 1 -pass 1 -an -f webm NUL
+  ffmpeg -y -i "$IN" -vf "$VF" -c:v libvpx-vp9 -b:v 850k -maxrate 1300k -deadline good -cpu-used 2 -row-mt 1 -pass 2 -c:a libopus -b:a 80k public/video/vsl.webm
+  # Capa (frame em 1,5s)
+  ffmpeg -y -ss 1.5 -i "$IN" -frames:v 1 -vf "scale=720:1280" -c:v libwebp -quality 78 public/video/vsl-poster.webp
+  ```
 - **Depoimentos e bônus:** troque `image: null` pelo objeto da imagem.
 
 ## Regras comerciais (honestidade da oferta)

@@ -61,13 +61,18 @@ export const images = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* Vídeo do entregável (formato Reels 9:16)                                   */
-/* Deixe `src` vazio para exibir o placeholder.                               */
+/* Vídeo VSL (formato Reels 9:16)                                             */
+/* Fontes em ordem de preferência: o navegador usa a primeira que suportar   */
+/* (WebM no Chrome/Android, MP4 no Safari/iPhone). Lista vazia = placeholder. */
+/* Para gerar a partir de um MP4 novo, veja "Vídeo" no README.                */
 /* -------------------------------------------------------------------------- */
 
 export const video = {
-  src: "",
-  poster: "",
+  sources: [
+    { src: asset("video/vsl.webm"), type: "video/webm" },
+    { src: asset("video/vsl.mp4"), type: "video/mp4" },
+  ],
+  poster: asset("video/vsl-poster.webp"),
   caption: "Veja como o material foi organizado para facilitar seus primeiros estudos.",
 };
 
