@@ -210,6 +210,16 @@ export type Plan = {
   price: number;
   tag: string;
   items: string[];
+  /**
+   * Parcelamento exibido abaixo do preço à vista (no lugar de "Pagamento único").
+   * Use exatamente as condições do checkout (Wiapy). O total parcelado é calculado e exibido.
+   */
+  installments?: { count: number; value: number };
+  /**
+   * Frase entre aspas abaixo do preço. Sem promessa de ganho/renda
+   * (CDC art. 37 e políticas do Meta Ads).
+   */
+  quote?: string;
   /** Bônus detalhados no card (apenas no Completo). Já incluídos em `price`. */
   bonuses?: { title: string; description: string }[];
   cta: string;
@@ -236,6 +246,8 @@ export const plans: Plan[] = [
     id: "complete",
     name: "Kit Lash do Zero Completo",
     price: 37.9,
+    installments: { count: 9, value: 5.49 },
+    quote: "Um único atendimento de extensão de cílios costuma custar mais que este kit.",
     tag: "Mais completo",
     items: [
       "Manual ilustrado completo",
