@@ -34,7 +34,7 @@ export function Footer() {
           © {new Date().getFullYear()} {brand.name}. Todos os direitos reservados.
         </p>
         <p className="mt-1 max-w-[360px] text-[12px] text-ink-soft">
-          {brand.presenter.name} é a apresentadora virtual da {brand.name}.
+          {brand.presenter.name} — {brand.presenter.role}.
         </p>
       </Container>
     </footer>

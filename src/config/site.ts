@@ -24,7 +24,7 @@ export const brand = {
   tagline: "Seu primeiro passo no universo Lash.",
   presenter: {
     name: "Larissa Monteiro",
-    role: "Apresentadora virtual da Bellash Academy",
+    role: "Lash Designer responsável pelo material",
   },
   logo: {
     horizontal: asset("img/logo.svg"),
@@ -57,7 +57,7 @@ export const images = {
     srcSet: `${asset("img/larissa-monteiro-400.webp")} 400w, ${asset("img/larissa-monteiro-800.webp")} 800w`,
     width: 800,
     height: 1067,
-    alt: "Larissa Monteiro, apresentadora virtual da Bellash Academy",
+    alt: "Larissa Monteiro, lash designer responsável pelo material",
   } satisfies ResponsiveImage,
 };
 

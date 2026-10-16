@@ -1,6 +1,6 @@
 # Bellash Academy — Landing Page Kit Lash do Zero
 
-Funil da Bellash Academy, apresentado por Larissa Monteiro (apresentadora virtual):
+Funil da Bellash Academy, com Larissa Monteiro (lash designer responsável pelo material):
 
 | URL        | Página                                                        | Arquivo de entrada   |
 | ---------- | ------------------------------------------------------------- | -------------------- |
