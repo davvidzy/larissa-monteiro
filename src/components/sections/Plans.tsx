@@ -13,7 +13,6 @@ import { UpgradeModal } from "./UpgradeModal";
 function PlanCard({ plan, onSelect }: { plan: Plan; onSelect: () => void }) {
   const [reais, centavos] = formatPrice(plan.price).replace(/R\$\s/, "").split(",");
   const inst = plan.installments;
-  const instTotal = inst ? Math.round(inst.count * inst.value * 100) / 100 : 0;
 
   return (
     <article
@@ -46,15 +45,10 @@ function PlanCard({ plan, onSelect }: { plan: Plan; onSelect: () => void }) {
       </p>
 
       {inst ? (
-        <>
-          {/* No lugar de "Pagamento único". CDC art. 52: informar o total parcelado com juros. */}
-          <p className="mt-1.5 text-[15px] text-ink-soft">
-            ou <strong className="text-[17px] font-bold text-primary">{inst.count}x de {formatPrice(inst.value)}</strong>
-          </p>
-          <p className="mt-0.5 text-[12px] text-ink-soft">
-            Parcelado no cartão com juros: total de {formatPrice(instTotal)}.
-          </p>
-        </>
+        // No lugar de "Pagamento único". O total com juros é informado no checkout (Wiapy).
+        <p className="mt-1.5 text-[15px] text-ink-soft">
+          ou <strong className="text-[17px] font-bold text-primary">{inst.count}x de {formatPrice(inst.value)}</strong>
+        </p>
       ) : (
         <p className="mt-1 text-[13px] text-ink-soft">Pagamento único</p>
       )}
