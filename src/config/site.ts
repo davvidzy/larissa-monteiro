@@ -78,21 +78,52 @@ export const video = {
 
 /* -------------------------------------------------------------------------- */
 /* Depoimentos                                                                */
-/* Use apenas depoimentos reais e autorizados. `image: null` = placeholder.   */
+/* Use apenas depoimentos reais e autorizados (nome, foto e conversa).        */
+/* Imagens em public/img/depoimentos/: avatar-N.webp e print-N-{720,1080}.webp */
+/* `purchased` é texto fixo — atualize manualmente quando quiser.             */
 /* -------------------------------------------------------------------------- */
 
 export type Testimonial = {
-  label: string;
-  image: ResponsiveImage | null;
+  name: string;
+  purchased: string;
+  /** Transcrição da mensagem da cliente (texto alternativo do print). */
+  quote: string;
+  avatar: string;
+  print: ResponsiveImage;
 };
+
+/** Monta os caminhos das imagens do depoimento N. */
+function testimonial(n: number, name: string, purchased: string, quote: string, height720: number): Testimonial {
+  const dir = "img/depoimentos/";
+  return {
+    name,
+    purchased,
+    quote,
+    avatar: asset(`${dir}avatar-${n}.webp`),
+    print: {
+      src: asset(`${dir}print-${n}-720.webp`),
+      srcSet: `${asset(`${dir}print-${n}-720.webp`)} 720w, ${asset(`${dir}print-${n}-1080.webp`)} 1080w`,
+      width: 720,
+      height: height720,
+      alt: `Print de conversa no WhatsApp. ${name} escreveu: “${quote}”`,
+    },
+  };
+}
 
 export const testimonials = {
   enabled: true,
   items: [
-    { label: "Depoimento 01", image: null },
-    { label: "Depoimento 02", image: null },
-    { label: "Depoimento 03", image: null },
-  ] satisfies Testimonial[],
+    testimonial(1, "Juliana Ferreira", "Comprou há 7 dias",
+      "vou ser sincera, fiquei meio receiosa de comprar pq já peguei uns pdf na internet que não explicava quase nada rsrs. mas achei esse bem completinho pra quem ta começando, gostei da parte dos materiais e das ideias de posts tbm", 631),
+    testimonial(2, "Camila Rodrigues", "Comprou há 23 dias",
+      "Gostei do kit. O material é fácil de entender e os 30 mapeamentos ajudam bastante a visualizar os diferentes estilos. Achei bem organizado.", 525),
+    testimonial(3, "Patrícia Almeida", "Comprou há 12 dias",
+      "Boa tarde! Gostaria de deixar meu feedback. Gostei da organização do material e da facilidade para acessar os conteúdos pelo celular. A calculadora de precificação foi um dos recursos que achei mais interessantes. Obrigada.", 525),
+    testimonial(4, "Amanda Martins", "Comprou há 38 dias",
+      "mds eu tava muito perdida kkkkk não sabia nem quais materiais pesquisar primeiro o kit me ajudou mto a organizar tudo, principalmente os mapeamentos. agr sei oq preciso estudar primeiro", 525),
+    testimonial(5, "Gabriela Oliveira", "Comprou há 4 dias",
+      "MENINAAAAA eu ameeeeeiii!!! tava achando q ia receber só uma apostilinha kkkkk mas tem as ferramentas tbmm!!! o checklist é perfeitoo pra mim que sou toda desorganizada", 525),
+  ],
 };
 
 /* -------------------------------------------------------------------------- */
