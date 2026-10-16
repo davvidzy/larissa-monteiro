@@ -6,6 +6,7 @@
 
 import type { LucideIcon } from "lucide-react";
 import { BookOpen, Eye, GraduationCap, Users } from "lucide-react";
+import { formatPrice } from "../lib/format";
 
 /**
  * Caminho de um arquivo de public/ visto da landing.
@@ -325,40 +326,58 @@ export const checkout = {
 /* FAQ                                                                        */
 /* -------------------------------------------------------------------------- */
 
+/** Valores do Kit Completo usados no FAQ (sempre iguais aos dos cards de planos). */
+const completePlan = plans.find((p) => p.id === "complete")!;
+const completePrice = formatPrice(completePlan.price);
+const completeInstallments = completePlan.installments;
+
 export const faq = [
   {
-    question: "Preciso ter experiência?",
-    answer: "Não. O material foi desenvolvido para iniciantes que desejam conhecer os fundamentos da área de cílios.",
-  },
-  {
-    question: "Preciso instalar aplicativo?",
-    answer: "Não. O portal funciona pelo navegador.",
-  },
-  {
-    question: "Como recebo o material?",
-    answer: "O acesso é digital, disponibilizado após a confirmação do pagamento.",
-  },
-  {
-    question: "Recebo PDFs?",
+    question: "O kit serve para quem nunca trabalhou com cílios?",
     answer:
-      "Sim. Os materiais de leitura são disponibilizados em PDF e as ferramentas funcionam dentro do portal.",
+      "Sim! O material foi desenvolvido para iniciantes que desejam conhecer os fundamentos da extensão de cílios e organizar seus primeiros estudos.",
   },
   {
-    question: "O pagamento é mensal?",
-    answer: "Não. É uma compra única.",
-  },
-  {
-    question: "Recebo certificado profissional?",
-    answer: "Não. O kit é educativo e não substitui formação prática supervisionada.",
-  },
-  {
-    question: "Posso aprender a aplicar cílios somente com o PDF?",
+    question: "O que recebo ao comprar o Kit Completo?",
     answer:
-      "O material é educativo e ajuda na preparação inicial. Para realizar procedimentos com segurança, é necessário treinamento prático adequado.",
+      "Um manual digital de 49 páginas, 30 mapeamentos ilustrativos e 5 bônus: calculadora de precificação, checklist, ficha de anamnese digital, 50 ideias de posts e guia pós-procedimento.",
   },
   {
-    question: "Qual é a diferença entre os planos?",
+    question: "É um curso em vídeo ou uma apostila?",
     answer:
-      "O Start apresenta os fundamentos, enquanto o Completo oferece um manual mais aprofundado, 30 mapeamentos e cinco bônus.",
+      "É um material educativo digital: o manual e os materiais de leitura vêm em PDF, e as ferramentas interativas ficam no Portal Bellash Academy. Não é um curso prático presencial.",
+  },
+  {
+    question: "Como recebo meu acesso?",
+    answer:
+      "Após a confirmação do pagamento, você recebe por WhatsApp e e-mail o link de acesso aos materiais digitais.",
+  },
+  {
+    question: "Preciso instalar algum aplicativo?",
+    answer: "Não. O portal pode ser acessado pelo navegador do celular ou do computador.",
+  },
+  {
+    question: "Os cinco bônus estão incluídos no preço?",
+    answer: `Sim! Todos os cinco bônus fazem parte do Kit Completo de ${completePrice}, sem cobrança adicional.`,
+  },
+  {
+    question: "O material oferece certificado profissional?",
+    answer:
+      "Não. O kit é educativo e introdutório e não substitui formação prática supervisionada. Para realizar procedimentos com segurança, é necessário treinamento prático adequado.",
+  },
+  {
+    question: "Quais são as formas de pagamento?",
+    answer: completeInstallments
+      ? `O Kit Completo custa ${completePrice} à vista ou em até ${completeInstallments.count}x de ${formatPrice(completeInstallments.value)} no cartão, totalizando ${formatPrice(Math.round(completeInstallments.count * completeInstallments.value * 100) / 100)} no parcelamento. É uma compra única, sem mensalidade.`
+      : `O Kit Completo custa ${completePrice}. É uma compra única, sem mensalidade.`,
+  },
+  {
+    question: "E se eu tiver dificuldade para acessar?",
+    answer:
+      "Você pode entrar em contato com o suporte da Bellash Academy pelos canais oficiais informados na página ou no e-mail de entrega.",
+  },
+  {
+    question: "Posso solicitar reembolso?",
+    answer: `Sim. Você tem ${guarantee.toLowerCase()}: se o material não atender às suas expectativas, basta solicitar o reembolso dentro desse prazo pelo suporte ou pelo e-mail de entrega.`,
   },
 ];
