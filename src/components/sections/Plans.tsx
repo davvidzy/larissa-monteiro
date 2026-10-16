@@ -1,6 +1,6 @@
-import { Check } from "lucide-react";
+import { Check, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { plans, type Plan } from "../../config/site";
+import { guarantee, plans, type Plan } from "../../config/site";
 import { track } from "../../lib/analytics";
 import { goToCheckout } from "../../lib/checkout";
 import { formatPrice } from "../../lib/format";
@@ -98,6 +98,10 @@ function PlanCard({ plan, onSelect }: { plan: Plan; onSelect: () => void }) {
       <Button variant={plan.featured ? "primary" : "outline"} fullWidth className="mt-auto" onClick={onSelect}>
         {plan.cta}
       </Button>
+      <p className="mt-3 flex items-center justify-center gap-1.5 text-[13px] font-medium text-ink-soft">
+        <ShieldCheck aria-hidden="true" className="size-4 text-success" strokeWidth={2} />
+        {guarantee}
+      </p>
     </article>
   );
 }

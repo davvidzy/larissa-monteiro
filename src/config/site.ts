@@ -300,6 +300,9 @@ export const plans: Plan[] = [
   },
 ];
 
+/** Texto exibido abaixo do botão de compra de todos os planos. */
+export const guarantee = "Garantia de 7 dias";
+
 /** Oferta exibida no popup ao escolher o Start. O valor substitui o do Start (não soma). */
 export const upgrade = {
   price: 29.9,
