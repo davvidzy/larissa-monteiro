@@ -1,0 +1,12 @@
+{
+  "name": "Bellash Academy",
+  "short_name": "Bellash",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFAFB",
+  "theme_color": "#862D59",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
