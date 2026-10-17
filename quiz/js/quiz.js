@@ -2,19 +2,18 @@
    quiz.js — motor do quiz (não precisa editar para trocar o conteúdo;
    o conteúdo fica em quiz-data.js)
 
-   Fluxo: tela inicial → perguntas (uma por tela) → transição → resultado
+   Fluxo: perguntas (uma por tela, já na abertura) → transição → resultado
    ========================================================================== */
 
 (function () {
   "use strict";
 
-  const INTRO = -1;
   /** Pausa após o toque para a opção marcada ficar visível antes de avançar. */
   const ADVANCE_DELAY_MS = 220;
 
   function createQuiz(root, data, config) {
     // started: já houve interação (antes disso não movemos o foco ao renderizar)
-    const state = { index: INTRO, answers: [], started: false, busy: false };
+    const state = { index: 0, answers: [], started: false, busy: false };
     const total = data.questions.length;
 
     const track = (name, params) =>
@@ -31,8 +30,7 @@
       return node;
     }
 
-    function mount(screen, { focus, card = true } = {}) {
-      root.classList.toggle("quiz--bare", !card);
+    function mount(screen, { focus } = {}) {
       root.replaceChildren(screen);
       if (focus && state.started) focus.focus({ preventScroll: true });
       // Cada etapa começa no topo (o quiz é o primeiro conteúdo da página)
@@ -42,31 +40,6 @@
     /* ---------------------------------------------------------------- */
     /* Telas                                                            */
     /* ---------------------------------------------------------------- */
-
-    function renderIntro() {
-      const intro = data.intro;
-      mount(
-        el("div", { class: "quiz__screen quiz__intro" }, [
-          el("p", { class: "quiz__badge", text: intro.badge }),
-          el("h2", { class: "quiz__intro-title", tabindex: "-1", text: intro.title }),
-          el("p", { class: "quiz__intro-text", text: intro.text }),
-          el("button", {
-            class: "btn btn--block",
-            type: "button",
-            text: intro.button,
-            on: {
-              click: () => {
-                state.started = true;
-                track("quiz_start");
-                goTo(0);
-              },
-            },
-          }),
-          el("p", { class: "quiz__note", text: intro.note }),
-        ]),
-        { card: false }
-      );
-    }
 
     function renderQuestion() {
       const q = data.questions[state.index];
@@ -105,14 +78,17 @@
           el("p", { class: "quiz__step", text: `Pergunta ${state.index + 1} de ${total}` }),
           heading,
           options,
-          el("div", { class: "quiz__nav" }, [
-            el("button", {
-              class: "quiz__back",
-              type: "button",
-              text: "← Voltar",
-              on: { click: () => goTo(state.index - 1) },
-            }),
-          ]),
+          // Na 1ª pergunta não há tela anterior
+          state.index > 0
+            ? el("div", { class: "quiz__nav" }, [
+                el("button", {
+                  class: "quiz__back",
+                  type: "button",
+                  text: "← Voltar",
+                  on: { click: () => goTo(state.index - 1) },
+                }),
+              ])
+            : null,
         ]),
         { focus: heading }
       );
@@ -175,6 +151,12 @@
       const q = data.questions[state.index];
       state.answers[state.index] = optionIndex;
 
+      // Sem tela inicial: o quiz "começa" na primeira resposta
+      if (!state.started) {
+        state.started = true;
+        track("quiz_start");
+      }
+
       // Marca a opção escolhida antes de avançar
       root.querySelectorAll(".quiz__option").forEach((b) => b.setAttribute("aria-pressed", "false"));
       button.setAttribute("aria-pressed", "true");
@@ -217,11 +199,11 @@
 
     function goTo(index) {
       state.index = index;
-      if (index === INTRO) renderIntro();
-      else renderQuestion();
+      renderQuestion();
     }
 
-    goTo(INTRO);
+    // Abre direto na primeira pergunta
+    goTo(0);
   }
 
   document.querySelectorAll("[data-quiz]").forEach((root) => {

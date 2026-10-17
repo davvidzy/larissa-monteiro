@@ -1,5 +1,6 @@
 /* ==========================================================================
-   quiz-data.js — conteúdo do quiz (tela inicial, perguntas, resultados)
+   quiz-data.js — conteúdo do quiz (perguntas, transição, resultados)
+   O quiz abre direto na primeira pergunta (sem tela de apresentação).
 
    Regras:
    - NÃO exibir preços, planos, descontos ou ofertas em nenhuma tela do quiz.
@@ -9,14 +10,6 @@
    ========================================================================== */
 
 window.QUIZ_DATA = {
-  intro: {
-    badge: "SEU PRIMEIRO PASSO NO UNIVERSO LASH 💖",
-    title: "Sonha em trabalhar com cílios, mas ainda não sabe por onde começar?",
-    text: "Responda 5 perguntas rápidas e descubra quais primeiros passos fazem sentido para você entrar no mercado de extensão de cílios.",
-    button: "Quero descobrir meus primeiros passos →", //  : a seta não quebra sozinha
-    note: "Gratuito • Cerca de 1 minuto",
-  },
-
   questions: [
     {
       id: "desejo",
