@@ -1,0 +1,53 @@
+# Hostinger (LiteSpeed/Apache)
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Força HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # QUIZ DESATIVADO (teste de conversão só com a landing):
+  # a página inicial redireciona para /oferta/ mantendo UTMs e fbclid.
+  # Para reativar o quiz, apague (ou comente) as duas linhas abaixo.
+  RewriteRule ^$ /oferta/ [R=302,L]
+  RewriteRule ^index\.html$ /oferta/ [R=302,L]
+</IfModule>
+
+# Compressão
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+
+# Tipos
+AddType application/manifest+json .webmanifest
+AddType image/webp .webp
+AddType video/webm .webm
+AddType video/mp4 .mp4
+
+# Cache
+<IfModule mod_headers.c>
+  # JS/CSS do build têm hash no nome (ex.: index-BaBtSFC6.js): cache de 1 ano
+  <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML sempre revalidado, para publicar mudanças na hora
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType video/webm "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  # CSS/JS sem hash (quiz): 1 dia
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+</IfModule>
