@@ -1,3 +1,5 @@
+@import "../../fonts/fonts.css";
+
 /* ==========================================================================
    base.css — tokens de design, reset e utilitários globais
    Fonte dos valores: design-system/bellash_academy_design_system.json
@@ -43,8 +45,8 @@
   --gradient-premium: linear-gradient(120deg, #F3E5CA 0%, #D8B77E 100%);
 
   /* Tipografia */
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant Fallback Georgia", "Cormorant Fallback Times", serif;
+  --font-body: "DM Sans", "DM Sans Fallback", Arial, sans-serif;
   --tracking-tight: -0.03em;
   --tracking-overline: 0.14em;
 

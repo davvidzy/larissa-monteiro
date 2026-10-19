@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Fontes servidas pelo próprio site (sem Google Fonts), compartilhadas entre
+   o quiz e a landing. Apenas o subconjunto "latin" (cobre o português).
+
+   As famílias "… Fallback" usam fontes do sistema com métricas ajustadas para
+   ocupar o mesmo espaço das fontes da marca: quando a fonte real termina de
+   carregar, o texto troca de desenho sem mudar de tamanho (sem layout shift).
+   Valores calculados com fontkit a partir dos arquivos das fontes.
+   ========================================================================== */
+
+@import "@fontsource/dm-sans/latin-400.css";
+@import "@fontsource/dm-sans/latin-500.css";
+@import "@fontsource/dm-sans/latin-700.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-700.css";
+@import "@fontsource/cormorant-garamond/latin-600-italic.css";
+
+@font-face {
+  font-family: "Cormorant Fallback Georgia";
+  src: local("Georgia");
+  size-adjust: 87.98%;
+  ascent-override: 105.02%;
+  descent-override: 32.62%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Cormorant Fallback Times";
+  src: local("Times New Roman"), local("Times");
+  size-adjust: 96.85%;
+  ascent-override: 95.4%;
+  descent-override: 29.63%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "DM Sans Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 103.48%;
+  ascent-override: 95.86%;
+  descent-override: 29.96%;
+  line-gap-override: 0%;
+}

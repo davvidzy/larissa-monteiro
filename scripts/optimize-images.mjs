@@ -11,7 +11,7 @@ import sharp from "sharp";
 
 const SRC_DIR = "images-src";
 const OUT_DIR = "public/img";
-const WIDTHS = [400, 800];
+const WIDTHS = [480, 800];
 const QUALITY = 80;
 
 await mkdir(OUT_DIR, { recursive: true });

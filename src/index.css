@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../fonts/fonts.css";
 
 /* Tokens da marca (design-system/bellash_academy_design_system.json + briefing) */
 @theme {
@@ -16,8 +17,8 @@
   --color-success: #15803D;
   --color-error: #B42318;
 
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant Fallback Georgia", "Cormorant Fallback Times", serif;
+  --font-sans: "DM Sans", "DM Sans Fallback", Arial, sans-serif;
 
   --radius-card: 18px;
   --radius-button: 12px;

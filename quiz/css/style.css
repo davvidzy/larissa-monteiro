@@ -110,6 +110,13 @@
 /* Quiz como primeira coisa da página: menos respiro no topo */
 .section--quiz { padding-block: var(--space-6) var(--space-16); }
 
+/* O quiz é desenhado pelo JavaScript: reservar a altura da tela evita que o
+   rodapé apareça e depois "pule" para baixo (layout shift) no carregamento. */
+#conteudo {
+  min-height: calc(100vh - 65px);
+  min-height: calc(100svh - 65px);
+}
+
 .section__title {
   text-align: center;
   margin-bottom: var(--space-10);

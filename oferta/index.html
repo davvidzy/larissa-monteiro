@@ -24,10 +24,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Fontes: servidas pelo próprio site (fonts/fonts.css); preload injetado no build -->
+
+  <!-- Capa do vídeo = maior elemento visível ao abrir no celular (LCP): baixar primeiro -->
+  <link rel="preload" as="image" href="/video/vsl-poster.webp" type="image/webp" fetchpriority="high">
 
   <!-- Meta Pixel Code (eventos do funil: src/lib/analytics.ts) -->
   <script>

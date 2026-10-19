@@ -14,7 +14,7 @@ O resultado do quiz leva para `/oferta/#planos`, mantendo as UTMs e acrescentand
 ```bash
 npm install        # instala as dependências
 npm run dev        # servidor local com recarga automática
-npm run build      # checa tipos e gera o site final em dist/
+npm run build      # checa tipos, gera o site em dist/ e pré-renderiza a landing
 npm run preview    # serve o dist/ localmente
 npm run images     # converte images-src/*.png|jpg em WebP (public/img/)
 ```
@@ -22,6 +22,13 @@ npm run images     # converte images-src/*.png|jpg em WebP (public/img/)
 > Os arquivos `index.html` e `oferta/index.html` são entradas do Vite: abertos direto do disco, por Live Server ou publicados sem build, ficam sem estilo ou em branco. Para visualizar, use `npm run dev` e acesse `/` (quiz) ou `/oferta/`. O que vai para o ar é sempre o conteúdo de `dist/`.
 >
 > O build usa caminhos relativos (`base: "./"`), então o site funciona tanto na raiz do domínio quanto numa subpasta.
+
+## Performance
+
+- **Landing pré-renderizada:** o build gera o HTML da `/oferta/` (`src/entry-server.tsx` + `scripts/prerender.mjs`), então a página aparece antes de o JavaScript carregar; o React só "ativa" o HTML (`hydrateRoot`). Código que depende do navegador (`window`, `localStorage`, relógio) deve rodar em `useEffect`, nunca durante a renderização.
+- **Fontes próprias** (`fonts/fonts.css`, pacotes `@fontsource`): sem Google Fonts, só o subconjunto latino, com preload das fontes do topo (plugin em `vite.config.ts`) e fontes de reserva com métricas ajustadas para o layout não "pular".
+- **Capa do vídeo** com preload em alta prioridade (é o maior elemento visível no celular).
+- Referência (Lighthouse, celular fraco + 4G lento): quiz 100, landing 91–92; acessibilidade, boas práticas e SEO 100; CLS 0.
 
 ## Deploy (Hostinger)
 

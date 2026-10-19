@@ -96,8 +96,10 @@ export function Testimonials() {
       <div className="mx-auto max-w-[1080px] md:px-5">
         <ul
           ref={listRef}
-          className="scrollbar-none flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain scroll-px-5 px-5 pb-2 md:scroll-px-0 md:px-0"
-          aria-label="Depoimentos de clientes"
+          // Focável: quem navega pelo teclado rola o carrossel com as setas
+          tabIndex={0}
+          className="scrollbar-none flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain scroll-px-5 rounded-card px-5 pb-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:scroll-px-0 md:px-0"
+          aria-label="Depoimentos de clientes (role para o lado para ver mais)"
         >
           {items.map((item) => (
             <li key={item.name} className="w-[85vw] max-w-[340px] shrink-0 snap-start">

@@ -52,6 +52,16 @@ export function Faq() {
             );
           })}
         </div>
+
+        {/* Quem tira a última dúvida aqui não precisa voltar até os planos */}
+        <div className="mt-8 text-center">
+          <a
+            href="#planos"
+            className="inline-flex min-h-[52px] w-full max-w-[340px] items-center justify-center rounded-button bg-primary px-5 py-3 text-[14px] font-bold tracking-[0.02em] text-white uppercase shadow-soft transition-colors hover:bg-primary-hover md:text-[15px]"
+          >
+            Quero começar agora
+          </a>
+        </div>
       </Container>
     </Section>
   );

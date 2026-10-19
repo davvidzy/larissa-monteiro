@@ -50,10 +50,20 @@ export type Countdown = { expired: boolean; hours: string; minutes: string; seco
 /**
  * Contador regressivo. Retorna `null` quando não há promoção ativa
  * e `{ expired: true }` quando o prazo terminou (sem reiniciar).
+ *
+ * O prazo é resolvido só no navegador (depois da montagem): a página é
+ * pré-renderizada no build, onde não existem relógio do visitante nem localStorage.
  */
 export function useCountdown(options: Options): Countdown | null {
-  const [end] = useState(() => resolveEnd(options));
-  const [now, setNow] = useState(() => Date.now());
+  const [end, setEnd] = useState<number | null>(null);
+  const [now, setNow] = useState(0);
+
+  useEffect(() => {
+    setEnd(resolveEnd(options));
+    setNow(Date.now());
+    // Resolve uma única vez por visita; mudanças em `options` exigem recarregar a página
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (end === null || Date.now() >= end) return;

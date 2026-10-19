@@ -53,8 +53,8 @@ export type ResponsiveImage = {
 
 export const images = {
   presenter: {
-    src: asset("img/larissa-monteiro-800.webp"),
-    srcSet: `${asset("img/larissa-monteiro-400.webp")} 400w, ${asset("img/larissa-monteiro-800.webp")} 800w`,
+    src: asset("img/larissa-monteiro-480.webp"),
+    srcSet: `${asset("img/larissa-monteiro-480.webp")} 480w, ${asset("img/larissa-monteiro-800.webp")} 800w`,
     width: 800,
     height: 1067,
     alt: "Larissa Monteiro, lash designer responsável pelo material",
@@ -80,7 +80,7 @@ export const video = {
 /* -------------------------------------------------------------------------- */
 /* Depoimentos                                                                */
 /* Use apenas depoimentos reais e autorizados (nome, foto e conversa).        */
-/* Imagens em public/img/depoimentos/: avatar-N.webp e print-N-{720,1080}.webp */
+/* Imagens em public/img/depoimentos/: avatar-N.webp e print-N-{540,720,1080}.webp */
 /* `purchased` é texto fixo — atualize manualmente quando quiser.             */
 /* -------------------------------------------------------------------------- */
 
@@ -103,7 +103,7 @@ function testimonial(n: number, name: string, purchased: string, quote: string, 
     avatar: asset(`${dir}avatar-${n}.webp`),
     print: {
       src: asset(`${dir}print-${n}-720.webp`),
-      srcSet: `${asset(`${dir}print-${n}-720.webp`)} 720w, ${asset(`${dir}print-${n}-1080.webp`)} 1080w`,
+      srcSet: `${asset(`${dir}print-${n}-540.webp`)} 540w, ${asset(`${dir}print-${n}-720.webp`)} 720w, ${asset(`${dir}print-${n}-1080.webp`)} 1080w`,
       width: 720,
       height: height720,
       alt: `Print de conversa no WhatsApp. ${name} escreveu: “${quote}”`,
