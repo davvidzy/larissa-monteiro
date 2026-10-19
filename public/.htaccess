@@ -10,6 +10,12 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # QUIZ DESATIVADO (teste de conversão só com a landing):
+  # a página inicial redireciona para /oferta/ mantendo UTMs e fbclid.
+  # Para reativar o quiz, apague (ou comente) as duas linhas abaixo.
+  RewriteRule ^$ /oferta/ [R=302,L]
+  RewriteRule ^index\.html$ /oferta/ [R=302,L]
 </IfModule>
 
 # Compressão
