@@ -109,32 +109,22 @@
     function renderResult() {
       const key = resultKey();
       const result = data.results[key];
-      const product = data.product;
       track("quiz_result_viewed", { result: key });
 
       const heading = el("h2", { class: "quiz__result-title", tabindex: "-1", text: result.title });
 
+      // Enxuto de propósito: cabe inteiro na tela do celular, sem rolagem
       mount(
         el("div", { class: "quiz__screen quiz__result" }, [
           el("p", { class: "quiz__eyebrow", text: "Seu resultado" }),
           heading,
           el("p", { class: "quiz__result-text", text: result.text }),
-
-          el("div", { class: "quiz__product" }, [
-            el("h3", { class: "quiz__product-title", text: product.title }),
-            el("p", { class: "quiz__product-text", text: product.text }),
-            el(
-              "ul",
-              { class: "quiz__benefits" },
-              product.benefits.map((b) => el("li", { text: b }))
-            ),
-            el("a", {
-              class: "btn btn--block",
-              href: resultLink(key),
-              text: product.button,
-              on: { click: () => track("quiz_cta_clicked", { result: key }) },
-            }),
-          ]),
+          el("a", {
+            class: "btn btn--block quiz__result-cta",
+            href: resultLink(key),
+            text: data.cta,
+            on: { click: () => track("quiz_cta_clicked", { result: key }) },
+          }),
         ]),
         { focus: heading }
       );

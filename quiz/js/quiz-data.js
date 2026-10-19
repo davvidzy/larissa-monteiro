@@ -69,34 +69,29 @@ window.QUIZ_DATA = {
     durationMs: 1100,
   },
 
+  /**
+   * Resultado: título direto + uma frase curta. A tela inteira (com o botão)
+   * precisa caber na altura do celular, sem rolagem — mantenha os textos curtos.
+   */
   results: {
     a: {
-      title: "Você já tem vontade de começar. Agora precisa de um caminho mais claro!",
-      text: "Seu primeiro passo é conhecer os materiais, entender os fundamentos da extensão de cílios e organizar seus estudos.",
+      title: "Você só precisa de um caminho claro.",
+      text: "Comece pelos materiais e fundamentos certos, com seus estudos organizados.",
     },
     b: {
-      title: "Antes de investir em materiais, vale a pena entender o que você realmente precisa.",
-      text: "Conhecer os equipamentos, conceitos básicos e caminhos de formação pode ajudar você a planejar seus primeiros investimentos.",
+      title: "Entenda antes de investir.",
+      text: "Saiba o que você realmente precisa antes de gastar com materiais.",
     },
     c: {
-      title: "Os materiais e mapeamentos parecem complicados? Comece pelos fundamentos.",
-      text: "Com explicações visuais e uma sequência de estudos organizada, fica mais fácil entender os conceitos utilizados na área.",
+      title: "Comece pelos fundamentos.",
+      text: "Com explicações visuais, materiais e mapeamentos ficam fáceis de entender.",
     },
     d: {
-      title: "Você tem interesse na profissão. Agora é hora de organizar seus próximos passos.",
-      text: "Uma jornada de aprendizagem estruturada pode ajudar você a compreender o que estudar e como se preparar para atuar futuramente.",
+      title: "Hora de organizar seus próximos passos.",
+      text: "Um roteiro de estudos mostra o que aprender primeiro.",
     },
   },
 
-  /** Bloco do material, abaixo do resultado. Sem preços, planos ou ofertas. */
-  product: {
-    title: "Seu próximo passo pode ser mais simples do que imagina 💖",
-    text: "Conheça o Lash do Zero, um material educativo e ilustrado que reúne fundamentos, materiais, mapeamentos e orientações para ajudar você a começar seus estudos na área de cílios.",
-    benefits: [
-      "Entenda os primeiros passos da profissão",
-      "Conheça os materiais e mapeamentos",
-      "Organize seus estudos com mais clareza",
-    ],
-    button: "Quero conhecer o material →",
-  },
+  /** Botão do resultado (leva à landing). Sem preços, planos ou ofertas no quiz. */
+  cta: "Quero conhecer o material →",
 };
