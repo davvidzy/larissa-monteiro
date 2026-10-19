@@ -28,7 +28,6 @@ export function Bonuses() {
         <SectionHeading
           id="bonus-title"
           title="E ainda tem 5 bônus especiais! 🎁"
-          subtitle="Ferramentas extras para ajudar você a organizar sua jornada Lash."
           className="mb-6! md:mb-8!"
         />
       </Container>

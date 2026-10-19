@@ -10,7 +10,6 @@ export function WhatsInside() {
         <SectionHeading
           id="inside-title"
           title="Muito mais que uma apostila!"
-          subtitle="Estude o material completo e utilize ferramentas práticas diretamente no Portal Bellash Academy, pelo celular ou computador."
         />
 
         <ul className="grid gap-4 md:grid-cols-2 md:gap-6">

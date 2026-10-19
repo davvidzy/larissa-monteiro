@@ -20,10 +20,9 @@ export function About() {
               id="about-title"
               className="font-display text-[29px] leading-[1.12] font-semibold text-ink md:text-[40px]"
             >
-              Prazer, sou a Larissa! 💖
+              {brand.presenter.name}
             </h2>
-            <p className="mt-4 text-[17px] font-bold text-ink">{brand.presenter.name}</p>
-            <p className="text-[13px] font-medium text-rose">{brand.presenter.role}</p>
+            <p className="mt-1 text-[14px] font-medium text-rose">{brand.presenter.role}</p>
             <p className="mt-4 text-ink-soft md:text-[17px]">
               Estou aqui para apresentar o Lash do Zero: uma coleção de materiais educativos criada para ajudar mulheres
               que desejam dar os primeiros passos no universo da extensão de cílios.
